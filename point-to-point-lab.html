@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Point-to-Point Laboratory | M4NA</title>
+
+<style>
+:root {
+    --olive:#B2CB70;
+    --gold:#9b8a42;
+    --dark:#26321b;
+    --background:#f5f7ee;
+    --white:#ffffff;
+    --text:#34402b;
+    --muted:#68735d;
+    --border:#e2e8d6;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--background);
+    color:var(--text);
+    line-height:1.65;
+}
+header{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:34px 20px;
+    border-bottom:5px solid var(--olive);
+}
+.brand{
+    color:var(--olive);
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+header h1{
+    font-size:clamp(27px,5vw,40px);
+    margin:12px 0 5px;
+}
+header p{color:#e5ebd9}
+nav{
+    background:white;
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+}
+nav a{
+    color:var(--dark);
+    text-decoration:none;
+    margin:0 12px;
+    font-size:14px;
+    font-weight:bold;
+}
+nav a:hover{color:var(--gold)}
+.container{
+    max-width:1050px;
+    margin:35px auto;
+    padding:0 18px;
+}
+.panel{
+    background:white;
+    padding:25px;
+    margin-bottom:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:0 4px 16px rgba(38,50,27,.045);
+}
+h2,h3{color:var(--dark)}
+.definition{
+    background:#f5f7ee;
+    border-left:5px solid var(--olive);
+    padding:18px;
+    border-radius:7px;
+    margin-top:18px;
+}
+.equation{
+    background:var(--dark);
+    color:white;
+    padding:17px;
+    text-align:center;
+    border-radius:9px;
+    margin:15px 0;
+    font-size:21px;
+    font-weight:bold;
+}
+.controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    align-items:end;
+    margin:20px 0;
+}
+.field{flex:1;min-width:150px}
+label{
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:6px;
+    color:var(--dark);
+}
+input,select{
+    width:100%;
+    padding:11px;
+    border:1px solid #cbd5b8;
+    border-radius:7px;
+    font-size:16px;
+    background:white;
+    color:var(--dark);
+}
+button{
+    background:var(--dark);
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+}
+button:hover{background:#43552d}
+button.secondary{
+    background:#e8eedb;
+    color:var(--dark);
+    border:1px solid var(--border);
+}
+.table-wrap{overflow-x:auto;margin-top:18px}
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:680px;
+}
+th{
+    background:var(--dark);
+    color:white;
+    padding:12px 9px;
+    text-align:center;
+    font-size:13px;
+}
+td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+}
+td input,td select{
+    min-width:85px;
+    text-align:center;
+}
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:14px;
+    margin-top:20px;
+}
+.result{
+    background:#f5f7ee;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:17px;
+    text-align:center;
+}
+.result span{
+    display:block;
+    font-size:13px;
+    color:var(--muted);
+}
+.result strong{
+    color:var(--dark);
+    font-size:23px;
+}
+.notice{
+    background:#f5f7ee;
+    border:1px solid var(--border);
+    padding:17px;
+    border-radius:9px;
+    margin-top:18px;
+}
+.note{
+    color:var(--muted);
+    font-size:13px;
+}
+footer{
+    text-align:center;
+    padding:30px 15px;
+    background:var(--dark);
+    color:white;
+    margin-top:45px;
+}
+footer a{
+    color:var(--olive);
+    text-decoration:none;
+    font-weight:bold;
+}
+@media(max-width:600px){
+    nav a{display:inline-block;margin:5px 8px}
+    .panel{padding:18px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">MECHANICS FOR NEW AGE</div>
+    <h1>Point-to-Point Laboratory</h1>
+    <p>Examining actual travelling distance through successive operations</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover M4NA</a>
+    <a href="classical-mechanics.html">Classical Mechanics</a>
+    <a href="laboratories.html">Laboratories</a>
+</nav>
+
+<main class="container">
+
+<section class="panel">
+    <h2>01 — Purpose of the Laboratory</h2>
+
+    <p>
+        This laboratory examines how an object's motion can be
+        represented through successive operations, each having
+        its own velocity value, duration and actual travelling
+        distance.
+    </p>
+
+    <div class="definition">
+        <strong>M4NA perspective:</strong>
+        A representation based only on an initial point and a final
+        point does not, by itself, describe every stage of the
+        object's actual travel. Successive operations provide
+        additional information about the motion pattern and the
+        distance travelled during each operation.
+    </div>
+</section>
+
+<section class="panel">
+    <h2>02 — Point-to-Point Representation</h2>
+
+    <p>
+        A point-to-point representation identifies two positions.
+        However, the two endpoints alone do not reveal how much
+        travelling distance was covered along the route or how
+        motion changed during the journey.
+    </p>
+
+    <div class="equation">
+        Initial Point → Final Point
+    </div>
+
+    <p>
+        The M4NA laboratory instead records the successive
+        operations and adds their actual travelling distances.
+    </p>
+
+    <div class="equation">
+        S = s₁ + s₂ + s₃ + ... + sₙ
+    </div>
+</section>
+
+<section class="panel">
+    <h2>03 — Successive Operation Calculator</h2>
+
+    <p>
+        Enter the applied-force value and duration for each
+        operation. Select a direction to label the operation.
+        The calculator records travelling distance as a
+        non-negative quantity for every operation.
+    </p>
+
+    <div class="controls">
+        <div class="field">
+            <label for="k">Proportionality constant (k)</label>
+            <input type="number" id="k" value="1"
+                   min="0.000001" step="any">
+        </div>
+
+        <button onclick="addOperation()">+ Add Operation</button>
+        <button class="secondary" onclick="resetOperations()">Reset</button>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Force Value (f)</th>
+                    <th>Duration (t)</th>
+                    <th>Direction</th>
+                    <th>Velocity Value (v)</th>
+                    <th>Travelling Distance (s)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="operationRows"></tbody>
+        </table>
+    </div>
+
+    <div class="result-grid">
+        <div class="result">
+            <span>Total Duration (T)</span>
+            <strong id="totalTime">0</strong>
+        </div>
+        <div class="result">
+            <span>Total Travelling Distance (S)</span>
+            <strong id="totalDistance">0</strong>
+        </div>
+        <div class="result">
+            <span>Total Force Quantity (F)</span>
+            <strong id="totalForce">0</strong>
+        </div>
+        <div class="result">
+            <span>Average Velocity Value (V)</span>
+            <strong id="averageVelocity">0</strong>
+        </div>
+    </div>
+
+    <div class="notice">
+        <h3>Successive Travel Record</h3>
+        <p id="travelRecord">Enter operation values to begin.</p>
+        <strong id="operationCount">0 operations</strong>
+    </div>
+
+    <p class="note">
+        Direction is recorded as a descriptive label. The calculator
+        does not subtract travelling distances or treat opposite
+        directions as cancellation of actual travel.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>04 — Comparing Different Motion Patterns</h2>
+
+    <h3>Pattern A</h3>
+    <div class="equation">2 → 4 → 6</div>
+    <p>
+        The velocity value increases across successive operations.
+    </p>
+
+    <h3>Pattern B</h3>
+    <div class="equation">4 → 4 → 4</div>
+    <p>
+        The velocity value remains unchanged across successive
+        operations.
+    </p>
+
+    <h3>Pattern C</h3>
+    <div class="equation">6 → 4 → 2</div>
+    <p>
+        The velocity value decreases across successive operations.
+    </p>
+
+    <p>
+        These patterns can have different operational histories.
+        Their comparison requires examining the individual
+        operations, not merely the endpoints.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>05 — M4NA Mathematical Expressions</h2>
+
+    <div class="equation">f = kv</div>
+    <div class="equation">sᵢ = vᵢtᵢ</div>
+    <div class="equation">S = Σsᵢ = Σvᵢtᵢ</div>
+    <div class="equation">T = Σtᵢ</div>
+    <div class="equation">V = S/T</div>
+    <div class="equation">F = Σfᵢtᵢ</div>
+    <div class="equation">F = kS</div>
+</section>
+
+<section class="panel">
+    <h2>06 — Research Perspective</h2>
+
+    <p>
+        The central examination of this laboratory is whether a
+        description based only on two endpoints adequately
+        represents the nature of motion throughout a journey.
+    </p>
+
+    <p>
+        The successive-operation approach records each operation
+        separately and calculates its travelling distance. The
+        total distance is then obtained by adding the distances
+        travelled in all recorded operations.
+    </p>
+
+    <div class="definition">
+        <strong>Key examination:</strong>
+        Two journeys may share the same starting and ending
+        positions while having different actual travelling
+        distances and different successive motion patterns.
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>Mechanics for New Age (M4NA) Classical Mechanics</p>
+    <p>Redefining the Foundations of Mechanics &amp; Cosmology</p>
+    <p>
+        <a href="laboratories.html">← Return to M4NA Laboratories</a>
+    </p>
+    <p style="font-size:12px;color:#d8dfcb;">
+        Shah Ahmed Fazley Rabbi, BAM, ndc
+    </p>
+</footer>
+
+<script>
+
+let operations = [
+    {f:2,t:1,direction:"Forward"},
+    {f:4,t:1,direction:"Forward"},
+    {f:6,t:1,direction:"Forward"}
+];
+
+function fmt(value){
+    if(!Number.isFinite(value)) return "—";
+    return Number(value.toFixed(4)).toString();
+}
+
+function renderRows(){
+    const tbody=document.getElementById("operationRows");
+    tbody.innerHTML="";
+
+    operations.forEach((op,index)=>{
+        const row=document.createElement("tr");
+
+        row.innerHTML=`
+            <td>${index+1}</td>
+            <td>
+                <input type="number" min="0" step="any"
+                value="${op.f}"
+                onchange="updateOperation(${index},'f',this.value)">
+            </td>
+            <td>
+                <input type="number" min="0" step="any"
+                value="${op.t}"
+                onchange="updateOperation(${index},'t',this.value)">
+            </td>
+            <td>
+                <select onchange="updateOperation(${index},'direction',this.value)">
+                    <option value="Forward" ${op.direction==="Forward"?"selected":""}>Forward</option>
+                    <option value="Backward" ${op.direction==="Backward"?"selected":""}>Backward</option>
+                    <option value="Other" ${op.direction==="Other"?"selected":""}>Other</option>
+                </select>
+            </td>
+            <td id="velocity-${index}">0</td>
+            <td id="distance-${index}">0</td>
+            <td>
+                <button class="secondary"
+                onclick="removeOperation(${index})">Remove</button>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
+
+    calculate();
+}
+
+function updateOperation(index,field,value){
+    operations[index][field] =
+        field==="direction" ? value : Number(value);
+    calculate();
+}
+
+function addOperation(){
+    operations.push({f:2,t:1,direction:"Forward"});
+    renderRows();
+}
+
+function removeOperation(index){
+    if(operations.length<=1){
+        alert("At least one operation is required.");
+        return;
+    }
+    operations.splice(index,1);
+    renderRows();
+}
+
+function resetOperations(){
+    operations=[
+        {f:2,t:1,direction:"Forward"},
+        {f:4,t:1,direction:"Forward"},
+        {f:6,t:1,direction:"Forward"}
+    ];
+    document.getElementById("k").value=1;
+    renderRows();
+}
+
+function calculate(){
+
+    const k=Number(document.getElementById("k").value);
+
+    if(!Number.isFinite(k)||k<=0){
+        document.getElementById("travelRecord").textContent=
+            "Please enter a positive value for k.";
+        return;
+    }
+
+    let totalTime=0;
+    let totalDistance=0;
+    let totalForce=0;
+    let records=[];
+
+    for(let i=0;i<operations.length;i++){
+
+        const f=Number(operations[i].f);
+        const t=Number(operations[i].t);
+
+        if(!Number.isFinite(f)||!Number.isFinite(t)||f<0||t<0){
+            document.getElementById("travelRecord").textContent=
+                "Please enter valid non-negative force and duration values.";
+            return;
+        }
+
+        const v=f/k;
+        const s=v*t;
+        const F=f*t;
+
+        totalTime+=t;
+        totalDistance+=s;
+        totalForce+=F;
+
+        records.push({
+            number:i+1,
+            velocity:v,
+            distance:s,
+            direction:operations[i].direction
+        });
+
+        document.getElementById("velocity-"+i).textContent=fmt(v);
+        document.getElementById("distance-"+i).textContent=fmt(s);
+    }
+
+    const V=totalTime>0 ? totalDistance/totalTime : 0;
+
+    document.getElementById("totalTime").textContent=fmt(totalTime);
+    document.getElementById("totalDistance").textContent=fmt(totalDistance);
+    document.getElementById("totalForce").textContent=fmt(totalForce);
+    document.getElementById("averageVelocity").textContent=fmt(V);
+
+    document.getElementById("travelRecord").textContent=
+        records.map(r=>
+            "Operation "+r.number+": "+fmt(r.distance)+
+            " distance units ("+r.direction+")"
+        ).join(" | ");
+
+    document.getElementById("operationCount").textContent=
+        operations.length+" operations recorded";
+}
+
+document.getElementById("k").addEventListener("input",calculate);
+
+renderRows();
+
+</script>
+
+</body>
+</html>
