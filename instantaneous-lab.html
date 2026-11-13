@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instantaneous Motion Laboratory | M4NA</title>
+
+<style>
+:root {
+    --olive: #B2CB70;
+    --gold: #9b8a42;
+    --dark: #26321b;
+    --background: #f5f7ee;
+    --white: #ffffff;
+    --text: #35402b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    background: var(--dark);
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--olive);
+}
+
+header .label {
+    color: var(--olive);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+header h1 {
+    margin: 10px 0;
+    font-size: 30px;
+}
+
+header p {
+    margin: 5px 0;
+    color: #e5ebd9;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+.panel {
+    background: var(--white);
+    border: 1px solid #e2e8d4;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 15px rgba(38,50,27,0.05);
+}
+
+h2 {
+    color: var(--dark);
+    margin-top: 0;
+    border-bottom: 2px solid var(--olive);
+    padding-bottom: 10px;
+}
+
+.equation {
+    background: #f1f5e6;
+    border-left: 5px solid var(--olive);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin: 18px 0;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.formula-note {
+    font-size: 14px;
+    color: #667052;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5b5;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+button {
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 8px 5px 0 0;
+}
+
+button:hover {
+    background: #465a2d;
+}
+
+.secondary {
+    background: var(--gold);
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.result {
+    background: #f5f7ee;
+    padding: 17px;
+    border-radius: 9px;
+    text-align: center;
+    border: 1px solid #e1e8d1;
+}
+
+.result span {
+    display: block;
+    color: #697452;
+    font-size: 13px;
+}
+
+.result strong {
+    display: block;
+    color: var(--dark);
+    font-size: 23px;
+    margin-top: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+th {
+    background: var(--olive);
+    color: var(--dark);
+    padding: 12px;
+}
+
+td {
+    padding: 11px;
+    text-align: center;
+    border-bottom: 1px solid #e3e8d9;
+}
+
+.note {
+    background: #fbf8ec;
+    border-left: 4px solid var(--gold);
+    padding: 15px;
+    border-radius: 6px;
+}
+
+footer {
+    text-align: center;
+    padding: 28px 15px;
+    background: var(--dark);
+    color: white;
+    margin-top: 35px;
+}
+
+footer a {
+    color: var(--olive);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media(max-width:600px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="label">MECHANICS FOR NEW AGE (M4NA)</div>
+    <h1>Instantaneous Motion Laboratory</h1>
+    <p>LAB 06 — Examining Instantaneous Force and Velocity</p>
+</header>
+
+<main class="container">
+
+<section class="panel">
+    <h2>1. Fundamental M4NA Relationship</h2>
+
+    <p>
+        This laboratory examines the proposed M4NA relationship
+        between the instantaneous applied-force value and the
+        corresponding instantaneous velocity.
+    </p>
+
+    <div class="equation">f = kv</div>
+
+    <p class="formula-note">
+        f = applied-force value &nbsp; | &nbsp;
+        v = instantaneous velocity &nbsp; | &nbsp;
+        k = proportionality constant
+    </p>
+
+    <div class="note">
+        <strong>M4NA approach:</strong>
+        Each instantaneous force value corresponds to a velocity
+        value under the selected proportionality constant.
+        The calculator below demonstrates this mathematical
+        relationship as proposed within the M4NA framework.
+    </div>
+</section>
+
+<section class="panel">
+    <h2>2. Instantaneous Force–Velocity Calculator</h2>
+
+    <div class="grid">
+        <div>
+            <label for="k">Proportionality constant (k)</label>
+            <input type="number" id="k" value="1" min="0.000001" step="any">
+        </div>
+
+        <div>
+            <label for="force">Instantaneous force value (f)</label>
+            <input type="number" id="force" value="2" step="any">
+        </div>
+    </div>
+
+    <button onclick="calculate()">Calculate Velocity</button>
+    <button class="secondary" onclick="resetCalculator()">Reset</button>
+
+    <div class="result-grid">
+        <div class="result">
+            <span>Applied-force value (f)</span>
+            <strong id="forceResult">2</strong>
+        </div>
+
+        <div class="result">
+            <span>Proportionality constant (k)</span>
+            <strong id="kResult">1</strong>
+        </div>
+
+        <div class="result">
+            <span>Instantaneous velocity (v)</span>
+            <strong id="velocityResult">2</strong>
+        </div>
+    </div>
+
+    <div class="equation" id="calculation">
+        2 = 1 × 2
+    </div>
+</section>
+
+<section class="panel">
+    <h2>3. Examine Different Force Patterns</h2>
+
+    <p>
+        Enter successive instantaneous force values to examine
+        their corresponding velocity pattern.
+    </p>
+
+    <div class="grid">
+        <div>
+            <label for="patternK">Proportionality constant (k)</label>
+            <input type="number" id="patternK" value="1" min="0.000001" step="any">
+        </div>
+
+        <div>
+            <label for="forces">Force values (separate with commas)</label>
+            <input type="text" id="forces" value="2, 4, 6">
+        </div>
+    </div>
+
+    <button onclick="analysePattern()">Analyse Pattern</button>
+
+    <div class="result-grid">
+        <div class="result">
+            <span>Force pattern</span>
+            <strong id="forcePattern">Increasing</strong>
+        </div>
+
+        <div class="result">
+            <span>Velocity pattern</span>
+            <strong id="velocityPattern">Increasing</strong>
+        </div>
+    </div>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Force value (f)</th>
+                    <th>Velocity (v)</th>
+                    <th>Relationship</th>
+                </tr>
+            </thead>
+            <tbody id="patternTable">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2 = 1 × 2</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4 = 1 × 4</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>6</td>
+                    <td>6</td>
+                    <td>6 = 1 × 6</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>4. Explore Force and Velocity Patterns</h2>
+
+    <p>Try these examples by entering the values in Section 3.</p>
+
+    <div class="grid">
+        <div class="result">
+            <span>Increasing</span>
+            <strong>2, 4, 6</strong>
+        </div>
+
+        <div class="result">
+            <span>Unchanged</span>
+            <strong>4, 4, 4</strong>
+        </div>
+
+        <div class="result">
+            <span>Decreasing</span>
+            <strong>6, 4, 2</strong>
+        </div>
+
+        <div class="result">
+            <span>Mixed</span>
+            <strong>2, 6, 3, 5</strong>
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>5. M4NA Mathematical Expression</h2>
+
+    <div class="equation">f = kv</div>
+
+    <div class="equation">f/t = kv/t</div>
+
+    <p>
+        The first expression represents the proposed instantaneous
+        relationship. The time-form expression may be considered
+        in relation to an instant or a duration, according to the
+        operation being examined.
+    </p>
+
+    <div class="note">
+        This laboratory presents the mathematical relationships
+        proposed by M4NA. It is an exploratory research tool,
+        not a declaration that the framework has been
+        experimentally established.
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>Mechanics for New Age (M4NA) Classical Mechanics</p>
+    <p>Shah Ahmed Fazley Rabbi, BAM, ndc</p>
+    <p>
+        <a href="laboratories.html">← Return to M4NA Laboratories</a>
+    </p>
+</footer>
+
+<script>
+function formatNumber(value) {
+    if (!Number.isFinite(value)) return "Invalid";
+    return Number(value.toPrecision(8)).toString();
+}
+
+function calculate() {
+    const k = Number(document.getElementById("k").value);
+    const f = Number(document.getElementById("force").value);
+
+    if (!Number.isFinite(k) || k <= 0 || !Number.isFinite(f)) {
+        alert("Please enter a valid force value and a positive k value.");
+        return;
+    }
+
+    const v = f / k;
+
+    document.getElementById("forceResult").textContent = formatNumber(f);
+    document.getElementById("kResult").textContent = formatNumber(k);
+    document.getElementById("velocityResult").textContent = formatNumber(v);
+
+    document.getElementById("calculation").textContent =
+        formatNumber(f) + " = " + formatNumber(k) +
+        " × " + formatNumber(v);
+}
+
+function getPattern(values) {
+    if (values.length < 2) return "Single value";
+
+    let increasing = true;
+    let decreasing = true;
+    let unchanged = true;
+
+    for (let i = 1; i < values.length; i++) {
+        if (values[i] <= values[i - 1]) increasing = false;
+        if (values[i] >= values[i - 1]) decreasing = false;
+        if (values[i] !== values[i - 1]) unchanged = false;
+    }
+
+    if (unchanged) return "Unchanged";
+    if (increasing) return "Increasing";
+    if (decreasing) return "Decreasing";
+
+    return "Mixed";
+}
+
+function analysePattern() {
+    const k = Number(document.getElementById("patternK").value);
+
+    const raw = document.getElementById("forces").value
+        .split(",")
+        .map(x => x.trim());
+
+    if (!Number.isFinite(k) || k <= 0 ||
+        raw.length === 0 ||
+        raw.some(x => x === "" || !Number.isFinite(Number(x)))) {
+        alert("Enter a positive k and valid comma-separated force values.");
+        return;
+    }
+
+    const forces = raw.map(Number);
+    const velocities = forces.map(f => f / k);
+
+    document.getElementById("forcePattern").textContent =
+        getPattern(forces);
+
+    document.getElementById("velocityPattern").textContent =
+        getPattern(velocities);
+
+    const tbody = document.getElementById("patternTable");
+    tbody.innerHTML = "";
+
+    forces.forEach((f, index) => {
+        const v = velocities[index];
+        const row = document.createElement("tr");
+
+        [
+            index + 1,
+            formatNumber(f),
+            formatNumber(v),
+            formatNumber(f) + " = " + formatNumber(k) +
+            " × " + formatNumber(v)
+        ].forEach(value => {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            row.appendChild(cell);
+        });
+
+        tbody.appendChild(row);
+    });
+}
+
+function resetCalculator() {
+    document.getElementById("k").value = 1;
+    document.getElementById("force").value = 2;
+    calculate();
+}
+
+calculate();
+analysePattern();
+</script>
+
+</body>
+</html>
