@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Motion Laboratory | M4NA</title>
+
+<style>
+:root {
+    --olive:#B2CB70;
+    --dark:#26321b;
+    --gold:#9b8a42;
+    --soft:#f5f7ee;
+    --text:#34402b;
+    --muted:#69745f;
+    --white:#fff;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fff;
+    color:var(--text);
+    line-height:1.7;
+}
+
+header {
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    border-bottom:1px solid #e8eddd;
+}
+
+.logo {
+    font-size:23px;
+    font-weight:bold;
+    color:var(--dark);
+    text-decoration:none;
+}
+
+.logo span {
+    color:var(--gold);
+}
+
+nav {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+nav a {
+    text-decoration:none;
+    color:var(--dark);
+    font-size:14px;
+    font-weight:bold;
+}
+
+nav a:hover {
+    color:var(--gold);
+}
+
+.hero {
+    text-align:center;
+    padding:65px 7%;
+    background:linear-gradient(135deg,#f5f7ee,#fff);
+}
+
+.eyebrow {
+    color:var(--gold);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.hero h1 {
+    color:var(--dark);
+    font-size:clamp(34px,5vw,52px);
+    margin:12px 0;
+}
+
+.hero p {
+    max-width:760px;
+    margin:auto;
+    color:var(--muted);
+}
+
+.container {
+    max-width:1100px;
+    margin:auto;
+    padding:50px 6%;
+}
+
+.intro {
+    background:var(--soft);
+    border-left:5px solid var(--olive);
+    border-radius:8px;
+    padding:25px;
+    margin-bottom:35px;
+}
+
+h2 {
+    color:var(--dark);
+    margin-bottom:12px;
+}
+
+.calculator {
+    border:1px solid #e4e9dc;
+    border-radius:14px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(38,50,27,.05);
+}
+
+.calculator-header {
+    margin-bottom:25px;
+}
+
+.calculator-header p {
+    color:var(--muted);
+    font-size:14px;
+}
+
+.input-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+label {
+    display:block;
+    color:var(--dark);
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+input {
+    width:100%;
+    padding:12px;
+    border:1px solid #dce3d1;
+    border-radius:7px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus {
+    border-color:var(--olive);
+    box-shadow:0 0 0 3px rgba(178,203,112,.18);
+}
+
+.unit {
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.buttons {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+button {
+    padding:12px 20px;
+    border:none;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.primary {
+    background:var(--dark);
+    color:white;
+}
+
+.secondary {
+    background:var(--olive);
+    color:var(--dark);
+}
+
+.reset {
+    background:#f0f2eb;
+    color:var(--dark);
+}
+
+button:hover {
+    opacity:.85;
+}
+
+.table-wrap {
+    overflow-x:auto;
+    margin-top:25px;
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+}
+
+th {
+    background:var(--dark);
+    color:white;
+    padding:13px 10px;
+    font-size:13px;
+}
+
+td {
+    border-bottom:1px solid #e8eddd;
+    padding:12px 10px;
+    text-align:center;
+    font-size:14px;
+}
+
+tbody tr:nth-child(even) {
+    background:#fafbf7;
+}
+
+.delete {
+    background:#f5e9e6;
+    color:#9b4235;
+    padding:7px 11px;
+}
+
+.results {
+    margin-top:35px;
+}
+
+.result-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.result-card {
+    background:var(--soft);
+    border:1px solid #e5eadb;
+    border-radius:10px;
+    padding:20px;
+}
+
+.result-card span {
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.result-card strong {
+    color:var(--dark);
+    font-size:25px;
+    overflow-wrap:anywhere;
+}
+
+.result-card small {
+    display:block;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.equations {
+    margin-top:35px;
+    background:#fbfcf8;
+    border:1px solid #e7ebdf;
+    border-radius:10px;
+    padding:25px;
+}
+
+.equations p {
+    font-size:18px;
+    color:var(--dark);
+    margin:9px 0;
+}
+
+.explanation {
+    margin-top:30px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+footer {
+    text-align:center;
+    padding:35px 6%;
+    background:var(--soft);
+    color:var(--muted);
+    font-size:14px;
+    margin-top:30px;
+}
+
+footer a {
+    color:var(--gold);
+    text-decoration:none;
+}
+
+@media(max-width:650px) {
+    header {
+        justify-content:center;
+    }
+
+    nav {
+        justify-content:center;
+    }
+
+    .calculator {
+        padding:20px 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">M4NA<span>.</span></a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="discover.html">Discover</a>
+        <a href="classical-mechanics.html">Classical Mechanics</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="laboratories.html">Laboratories</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="eyebrow">M4NA INTERACTIVE LABORATORY 01</div>
+
+    <h1>Motion Laboratory</h1>
+
+    <p>
+        Explore the proposed relationship between applied-force
+        value, velocity, operation duration and actual travelling
+        distance within the M4NA framework.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="intro">
+        <h2>Understanding Motion</h2>
+
+        <p>
+            Within the M4NA framework, motion is examined through
+            its value (velocity/rate) and quantity (actual travelling
+            distance) across successive operations.
+        </p>
+    </section>
+
+    <section class="calculator">
+
+        <div class="calculator-header">
+            <h2>Interactive Motion Calculator</h2>
+
+            <p>
+                Enter the force value and duration for each operation.
+                The calculator applies the M4NA relationships.
+            </p>
+        </div>
+
+        <div class="input-grid">
+
+            <div>
+                <label for="k">Proportionality Constant (k)</label>
+                <input type="number" id="k" value="1" min="0.000001" step="any">
+                <div class="unit">Must be greater than zero</div>
+            </div>
+
+        </div>
+
+        <h3 style="color:#26321b;margin-bottom:15px;">
+            Operation Inputs
+        </h3>
+
+        <div class="table-wrap">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Force Value (f)</th>
+                        <th>Duration (t)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="operationRows"></tbody>
+            </table>
+
+        </div>
+
+        <div class="buttons">
+            <button class="secondary" onclick="addOperation()">
+                + Add Operation
+            </button>
+
+            <button class="primary" onclick="calculate()">
+                Calculate Motion
+            </button>
+
+            <button class="reset" onclick="resetCalculator()">
+                Reset
+            </button>
+        </div>
+
+        <div class="results">
+
+            <h2>Calculated Results</h2>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <span>Total Operation Time (T)</span>
+                    <strong id="totalTime">0</strong>
+                    <small>Time units</small>
+                </div>
+
+                <div class="result-card">
+                    <span>Total Travelling Distance (S)</span>
+                    <strong id="totalDistance">0</strong>
+                    <small>Distance units</small>
+                </div>
+
+                <div class="result-card">
+                    <span>Total Force Quantity (F)</span>
+                    <strong id="totalForce">0</strong>
+                    <small>As defined in M4NA</small>
+                </div>
+
+                <div class="result-card">
+                    <span>Average Velocity (V)</span>
+                    <strong id="averageVelocity">0</strong>
+                    <small>Distance units per time unit</small>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="table-wrap">
+            <h2 style="margin-top:35px;">Operation Results</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Force (f)</th>
+                        <th>Velocity (v)</th>
+                        <th>Distance (s)</th>
+                        <th>Force Quantity (F)</th>
+                    </tr>
+                </thead>
+
+                <tbody id="resultRows">
+                    <tr>
+                        <td colspan="5">Enter values and calculate.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="equations">
+            <h2>M4NA Mathematical Relationships</h2>
+
+            <p>f = kv</p>
+            <p>v = f/k</p>
+            <p>sᵢ = vᵢtᵢ</p>
+            <p>Fᵢ = fᵢtᵢ</p>
+            <p>S = Σ(vᵢtᵢ)</p>
+            <p>F = Σ(fᵢtᵢ)</p>
+            <p>V = S/T</p>
+            <p>F = kS</p>
+        </div>
+
+        <div class="explanation">
+            <strong>Calculation note:</strong>
+            The calculator treats each row as a separate operation.
+            It calculates velocity as f/k, travelling distance as vt,
+            and force quantity as ft. Total values are obtained by
+            summing the operations.
+            These calculations implement the proposed M4NA model;
+            they do not by themselves establish its empirical validity.
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p><strong>Mechanics for New Age (M4NA)</strong></p>
+    <p>Redefining the Foundations of Mechanics & Cosmology</p>
+
+    <p style="margin-top:15px;">
+        <a href="laboratories.html">← Return to M4NA Laboratories</a>
+    </p>
+
+    <p style="margin-top:12px;">
+        © 2026 Mechanics for New Age. All rights reserved.
+    </p>
+</footer>
+
+<script>
+let operationCount = 0;
+
+function addOperation(force = "", duration = "") {
+    operationCount++;
+
+    const tbody = document.getElementById("operationRows");
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${operationCount}</td>
+
+        <td>
+            <input type="number" class="force-input"
+            min="0" step="any" value="${force}"
+            placeholder="Enter f" aria-label="Force value">
+        </td>
+
+        <td>
+            <input type="number" class="time-input"
+            min="0" step="any" value="${duration}"
+            placeholder="Enter t" aria-label="Operation duration">
+        </td>
+
+        <td>
+            <button class="delete" onclick="removeOperation(this)">
+                Remove
+            </button>
+        </td>
+    `;
+
+    tbody.appendChild(row);
+    updateOperationNumbers();
+}
+
+function removeOperation(button) {
+    button.closest("tr").remove();
+    updateOperationNumbers();
+    calculate();
+}
+
+function updateOperationNumbers() {
+    const rows = document.querySelectorAll("#operationRows tr");
+
+    rows.forEach((row, index) => {
+        row.cells[0].textContent = index + 1;
+    });
+
+    operationCount = rows.length;
+}
+
+function formatNumber(value) {
+    if (!Number.isFinite(value)) return "—";
+
+    return Number(value.toFixed(6)).toString();
+}
+
+function calculate() {
+    const k = Number(document.getElementById("k").value);
+
+    if (!Number.isFinite(k) || k <= 0) {
+        alert("Please enter a proportionality constant greater than zero.");
+        return;
+    }
+
+    const rows = document.querySelectorAll("#operationRows tr");
+    const resultBody = document.getElementById("resultRows");
+
+    let totalTime = 0;
+    let totalDistance = 0;
+    let totalForce = 0;
+
+    let results = [];
+
+    for (let i = 0; i < rows.length; i++) {
+
+        const forceInput = rows[i].querySelector(".force-input");
+        const timeInput = rows[i].querySelector(".time-input");
+
+        const f = Number(forceInput.value);
+        const t = Number(timeInput.value);
+
+        if (
+            forceInput.value.trim() === "" ||
+            timeInput.value.trim() === "" ||
+            !Number.isFinite(f) ||
+            !Number.isFinite(t) ||
+            f < 0 ||
+            t < 0
+        ) {
+            alert("Please enter valid non-negative force and duration values in every operation.");
+            return;
+        }
+
+        const v = f / k;
+        const s = v * t;
+        const F = f * t;
+
+        totalTime += t;
+        totalDistance += s;
+        totalForce += F;
+
+        results.push({i:i+1, f:f, v:v, s:s, F:F});
+    }
+
+    const averageVelocity =
+        totalTime > 0 ? totalDistance / totalTime : 0;
+
+    document.getElementById("totalTime").textContent =
+        formatNumber(totalTime);
+
+    document.getElementById("totalDistance").textContent =
+        formatNumber(totalDistance);
+
+    document.getElementById("totalForce").textContent =
+        formatNumber(totalForce);
+
+    document.getElementById("averageVelocity").textContent =
+        formatNumber(averageVelocity);
+
+    if (results.length === 0) {
+        resultBody.innerHTML =
+            '<tr><td colspan="5">No operations entered.</td></tr>';
+        return;
+    }
+
+    resultBody.innerHTML = results.map(r => `
+        <tr>
+            <td>${r.i}</td>
+            <td>${formatNumber(r.f)}</td>
+            <td>${formatNumber(r.v)}</td>
+            <td>${formatNumber(r.s)}</td>
+            <td>${formatNumber(r.F)}</td>
+        </tr>
+    `).join("");
+}
+
+function resetCalculator() {
+    document.getElementById("k").value = 1;
+    document.getElementById("operationRows").innerHTML = "";
+
+    operationCount = 0;
+
+    document.getElementById("resultRows").innerHTML =
+        '<tr><td colspan="5">Enter values and calculate.</td></tr>';
+
+    document.getElementById("totalTime").textContent = "0";
+    document.getElementById("totalDistance").textContent = "0";
+    document.getElementById("totalForce").textContent = "0";
+    document.getElementById("averageVelocity").textContent = "0";
+
+    addOperation();
+}
+
+addOperation(2, 1);
+addOperation(4, 1);
+addOperation(6, 1);
+
+calculate();
+</script>
+
+</body>
+</html>
