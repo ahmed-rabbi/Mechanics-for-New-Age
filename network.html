@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M4NA Scientific Network</title>
+
+<meta name="description" content="Explore the Mechanics for New Age scientific network, research platforms and interactive laboratories.">
+
+<style>
+:root {
+    --olive: #B2CB70;
+    --gold: #9b8a42;
+    --dark: #26321b;
+    --background: #f5f7ee;
+    --white: #ffffff;
+    --text: #35402d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    background: var(--dark);
+    color: white;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--olive);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo small {
+    display: block;
+    font-size: 10px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--olive);
+}
+
+.hero {
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(135deg, #26321b, #43552e);
+    color: white;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin: 0 0 15px;
+    color: var(--olive);
+}
+
+.hero p {
+    max-width: 750px;
+    margin: auto;
+    font-size: 17px;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 55px 22px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    color: var(--dark);
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: var(--white);
+    padding: 28px;
+    border-radius: 13px;
+    border: 1px solid #e2e8d5;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--olive);
+}
+
+.card .number {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.card h3 {
+    color: var(--dark);
+    margin: 10px 0;
+    font-size: 21px;
+}
+
+.card p {
+    font-size: 14px;
+    min-height: 65px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 17px;
+    background: var(--dark);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.card a:hover {
+    background: #52683a;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 12px;
+    color: #777;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 35px;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 13px;
+}
+
+footer a {
+    color: var(--olive);
+    text-decoration: none;
+}
+
+@media(max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 55px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a href="index.html" class="logo">
+M4NA
+<small>SCIENTIFIC EXPLORATION</small>
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="discover.html">Discover</a>
+<a href="classical-mechanics.html">Classical Mechanics</a>
+<a href="laboratories.html">Laboratories</a>
+<a href="discussions.html">Discussions</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>M4NA Scientific Network</h1>
+
+<p>
+A connected scientific platform for exploring mechanics,
+quantum research, cosmology, interactive laboratories
+and collaborative scientific discovery.
+</p>
+
+</section>
+
+<main class="container">
+
+<div class="section-title">
+<h2>Explore the M4NA Network</h2>
+<p>Discover the different research and learning platforms of M4NA.</p>
+</div>
+
+<div class="grid">
+
+<article class="card">
+<div class="number">PLATFORM 01</div>
+<h3>Classical Mechanics</h3>
+<p>
+Explore Newtonian mechanics and the proposed
+Mechanics for New Age classical framework.
+</p>
+<a href="classical-mechanics.html">Explore Platform</a>
+</article>
+
+<article class="card">
+<div class="number">PLATFORM 02</div>
+<h3>Quantum Research</h3>
+<p>
+A dedicated platform for quantum concepts,
+atomic research and future scientific investigations.
+</p>
+<span class="status">COMING SOON</span>
+</article>
+
+<article class="card">
+<div class="number">PLATFORM 03</div>
+<h3>Cosmology & Universe</h3>
+<p>
+Explore cosmological questions, the universe
+and the foundations of scientific understanding.
+</p>
+<span class="status">COMING SOON</span>
+</article>
+
+<article class="card">
+<div class="number">PLATFORM 04</div>
+<h3>Interactive Laboratories</h3>
+<p>
+Explore M4NA concepts through interactive
+scientific laboratories and experiments.
+</p>
+<a href="laboratories.html">Enter Laboratories</a>
+</article>
+
+<article class="card">
+<div class="number">PLATFORM 05</div>
+<h3>M4NA Community</h3>
+<p>
+A future collaborative space for members,
+researchers, scientific questions and discussions.
+</p>
+<a href="discussions.html">Visit Discussions</a>
+</article>
+
+<article class="card">
+<div class="number">PLATFORM 06</div>
+<h3>Research Journal</h3>
+<p>
+Explore research papers, publications and
+scientific contributions within the M4NA framework.
+</p>
+<a href="publications.html">View Publications</a>
+</article>
+
+<article class="card">
+<div class="number">PLATFORM 07</div>
+<h3>Research Centre</h3>
+<p>
+Explore the research programme and
+developing scientific investigations of M4NA.
+</p>
+<a href="research.html">Explore Research</a>
+</article>
+
+</div>
+
+</main>
+
+<footer>
+
+<p><strong>MECHANICS FOR NEW AGE (M4NA)</strong></p>
+
+<p>Redefining the Foundations of Mechanics & Cosmology</p>
+
+<p>
+<a href="index.html">Return to Main Website</a>
+</p>
+
+<p>© 2026 M4NA. All rights reserved.</p>
+
+</footer>
+
+</body>
+</html>
