@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M4NA Laboratories | Mechanics for New Age</title>
+
+<meta name="description" content="Explore the interactive scientific laboratories of Mechanics for New Age, examining motion, force, velocity, acceleration and quantum concepts.">
+
+<style>
+:root {
+    --olive: #B2CB70;
+    --dark: #26321b;
+    --gold: #9b8a42;
+    --soft: #f5f7ee;
+    --text: #34402b;
+    --muted: #69745f;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #e8eddd;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--gold);
+}
+
+.hero {
+    background: linear-gradient(135deg, #f5f7ee, #ffffff);
+    padding: 85px 8%;
+    text-align: center;
+    border-bottom: 1px solid #edf0e5;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    color: var(--dark);
+    font-size: clamp(36px, 5vw, 58px);
+    margin: 15px 0;
+    line-height: 1.15;
+}
+
+.hero p {
+    max-width: 780px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.section {
+    padding: 65px 8%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.heading {
+    margin-bottom: 30px;
+}
+
+.heading h2 {
+    color: var(--dark);
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.heading p {
+    color: var(--muted);
+    max-width: 760px;
+}
+
+.intro {
+    background: var(--soft);
+    border-left: 5px solid var(--olive);
+    padding: 28px 30px;
+    border-radius: 8px;
+    margin-bottom: 45px;
+}
+
+.intro h2 {
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e7ebdf;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 5px 18px rgba(38,50,27,0.035);
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--olive);
+    box-shadow: 0 10px 25px rgba(38,50,27,0.08);
+}
+
+.number {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.card h3 {
+    color: var(--dark);
+    font-size: 21px;
+    margin: 12px 0;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.tag {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 5px 12px;
+    background: #f1f4e9;
+    color: #697b3c;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.framework {
+    background: var(--dark);
+    color: white;
+    padding: 55px 8%;
+    text-align: center;
+}
+
+.framework h2 {
+    font-size: 30px;
+    color: var(--olive);
+    margin-bottom: 15px;
+}
+
+.framework p {
+    max-width: 800px;
+    margin: auto;
+    color: #e0e7d5;
+}
+
+.equations {
+    margin-top: 28px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.equations p {
+    color: white;
+    font-size: 19px;
+    line-height: 2;
+}
+
+.notice {
+    background: #fbfcf8;
+    border: 1px solid #e8eddd;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 35px;
+    color: var(--muted);
+}
+
+footer {
+    background: var(--soft);
+    padding: 35px 8%;
+    text-align: center;
+    border-top: 1px solid #e7ebdf;
+}
+
+footer h3 {
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+footer p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+@media(max-width: 700px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px 17px;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .section {
+        padding: 45px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">M4NA<span>.</span></a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="discover.html">Discover</a>
+        <a href="classical-mechanics.html">Classical Mechanics</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="laboratories.html" class="active">Laboratories</a>
+        <a href="discussions.html">Discussions</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="eyebrow">Interactive Scientific Exploration</div>
+
+    <h1>M4NA Laboratories</h1>
+
+    <p>
+        A dedicated environment for examining mechanical principles,
+        exploring mathematical relationships and investigating
+        scientific propositions through structured laboratory studies.
+    </p>
+</section>
+
+<main>
+
+<section class="section">
+
+    <div class="intro">
+        <h2>Explore. Examine. Investigate.</h2>
+
+        <p>
+            The Mechanics for New Age Laboratories are designed to
+            provide a structured environment for scientific exploration.
+            Each laboratory focuses on a particular subject within
+            the developing M4NA framework.
+        </p>
+    </div>
+
+    <div class="heading">
+        <h2>Our Scientific Laboratories</h2>
+
+        <p>
+            Seven specialised areas form the initial structure
+            of the M4NA Laboratory platform.
+        </p>
+    </div>
+
+    <div class="grid">
+
+        <article class="card">
+            <div class="number">LAB 01</div>
+            <h3>Motion Laboratory</h3>
+            <p>
+                Examine the nature of motion, travelling distance
+                and motion patterns through successive operations.
+            </p>
+            <span class="tag">Motion Studies</span>
+        </article>
+
+        <article class="card">
+            <div class="number">LAB 02</div>
+            <h3>Force Identity Laboratory</h3>
+            <p>
+                Explore the proposed relationship between applied
+                force, resultant force and the motion of an object.
+            </p>
+            <span class="tag">Force Studies</span>
+        </article>
+
+        <article class="card">
+            <div class="number">LAB 03</div>
+            <h3>Acceleration Laboratory</h3>
+            <p>
+                Investigate changing motion values and examine
+                different patterns of motion across successive
+                operations.
+            </p>
+            <span class="tag">Acceleration Studies</span>
+        </article>
+
+        <article class="card">
+            <div class="number">LAB 04</div>
+            <h3>Point-to-Point Laboratory</h3>
+            <p>
+                Examine point-to-point descriptions of motion
+                alongside the M4NA emphasis on actual travelling
+                distance and successive motion operations.
+            </p>
+            <span class="tag">Comparative Studies</span>
+        </article>
+
+        <article class="card">
+            <div class="number">LAB 05</div>
+            <h3>Velocity Laboratory</h3>
+            <p>
+                Explore velocity values, travelling distance,
+                time and the mathematical relationships proposed
+                within the M4NA framework.
+            </p>
+            <span class="tag">Velocity Studies</span>
+        </article>
+
+        <article class="card">
+            <div class="number">LAB 06</div>
+            <h3>Instantaneous Motion Laboratory</h3>
+            <p>
+                Examine instantaneous force and velocity values
+                and investigate how changing force patterns
+                correspond to proposed motion patterns.
+            </p>
+            <span class="tag">Instantaneous Studies</span>
+        </article>
+
+        <article class="card">
+            <div class="number">LAB 07</div>
+            <h3>Quantum Laboratory</h3>
+            <p>
+                A dedicated space for future exploration of
+                quantum phenomena and developing M4NA
+                theoretical propositions.
+            </p>
+            <span class="tag">Quantum Research</span>
+        </article>
+
+    </div>
+
+    <div class="notice">
+        <strong>Laboratory Development:</strong>
+        These laboratories represent the initial structure
+        of the M4NA platform. Interactive experiments,
+        calculators, graphical tools and research demonstrations
+        will be introduced progressively.
+    </div>
+
+</section>
+
+<section class="framework">
+
+    <h2>The M4NA Mathematical Framework</h2>
+
+    <p>
+        The following expressions represent selected mathematical
+        relationships proposed within the M4NA framework.
+        They provide a foundation for the development of
+        interactive laboratory studies.
+    </p>
+
+    <div class="equations">
+        <p>f = kv</p>
+        <p>sᵢ = vᵢtᵢ</p>
+        <p>S = Σ(vᵢtᵢ)</p>
+        <p>F = Σ(fᵢtᵢ)</p>
+        <p>F = kS</p>
+        <p>V = S/T</p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="heading">
+        <h2>From Theory to Exploration</h2>
+
+        <p>
+            The purpose of the M4NA Laboratories is to connect
+            theoretical propositions with mathematical examination,
+            interactive demonstrations and further scientific inquiry.
+        </p>
+    </div>
+
+    <div class="intro">
+        <h2>A Platform for Scientific Discovery</h2>
+
+        <p>
+            Each laboratory will progressively develop its own
+            experimental environment, analytical tools and
+            educational resources as the M4NA research programme
+            advances.
+        </p>
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <h3>Mechanics for New Age (M4NA)</h3>
+
+    <p>Redefining the Foundations of Mechanics & Cosmology</p>
+
+    <p style="margin-top:12px;">
+        A Global Platform for Scientific Discovery
+    </p>
+
+    <p style="margin-top:18px;">
+        © 2026 Mechanics for New Age. All rights reserved.
+    </p>
+</footer>
+
+</body>
+</html>
