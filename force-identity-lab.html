@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Force Identity Laboratory | M4NA</title>
+
+<style>
+:root {
+    --olive:#B2CB70;
+    --dark:#26321b;
+    --gold:#9b8a42;
+    --soft:#f5f7ee;
+    --text:#34402b;
+    --muted:#69745f;
+    --white:#fff;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fff;
+    color:var(--text);
+    line-height:1.7;
+}
+
+header {
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    border-bottom:1px solid #e8eddd;
+}
+
+.logo {
+    font-size:23px;
+    font-weight:bold;
+    color:var(--dark);
+    text-decoration:none;
+}
+
+.logo span {
+    color:var(--gold);
+}
+
+nav {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+nav a {
+    text-decoration:none;
+    color:var(--dark);
+    font-size:14px;
+    font-weight:bold;
+}
+
+nav a:hover {
+    color:var(--gold);
+}
+
+.hero {
+    text-align:center;
+    padding:65px 7%;
+    background:linear-gradient(135deg,#f5f7ee,#fff);
+}
+
+.eyebrow {
+    color:var(--gold);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.hero h1 {
+    color:var(--dark);
+    font-size:clamp(34px,5vw,52px);
+    margin:12px 0;
+}
+
+.hero p {
+    max-width:780px;
+    margin:auto;
+    color:var(--muted);
+}
+
+.container {
+    max-width:1100px;
+    margin:auto;
+    padding:50px 6%;
+}
+
+.intro {
+    background:var(--soft);
+    border-left:5px solid var(--olive);
+    border-radius:8px;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+h2 {
+    color:var(--dark);
+    margin-bottom:12px;
+}
+
+h3 {
+    color:var(--dark);
+}
+
+.panel {
+    border:1px solid #e4e9dc;
+    border-radius:14px;
+    padding:28px;
+    margin-bottom:25px;
+    box-shadow:0 8px 25px rgba(38,50,27,.04);
+}
+
+.panel p {
+    color:var(--muted);
+}
+
+.input-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+label {
+    display:block;
+    color:var(--dark);
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+input, select {
+    width:100%;
+    padding:12px;
+    border:1px solid #dce3d1;
+    border-radius:7px;
+    font-size:16px;
+    background:white;
+}
+
+input:focus, select:focus {
+    outline:none;
+    border-color:var(--olive);
+}
+
+.small {
+    color:var(--muted);
+    font-size:12px;
+    margin-top:5px;
+}
+
+button {
+    padding:12px 20px;
+    border:none;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.primary {
+    background:var(--dark);
+    color:white;
+}
+
+.secondary {
+    background:var(--olive);
+    color:var(--dark);
+}
+
+.reset {
+    background:#f0f2eb;
+    color:var(--dark);
+}
+
+.remove {
+    background:#f5e9e6;
+    color:#9b4235;
+    padding:8px 12px;
+}
+
+button:hover {
+    opacity:.85;
+}
+
+.buttons {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.table-wrap {
+    overflow-x:auto;
+    margin-top:20px;
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    min-width:600px;
+}
+
+th {
+    background:var(--dark);
+    color:white;
+    padding:13px;
+    font-size:13px;
+}
+
+td {
+    padding:12px;
+    border-bottom:1px solid #e8eddd;
+    text-align:center;
+    font-size:14px;
+}
+
+.result-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.result-card {
+    background:var(--soft);
+    border:1px solid #e5eadb;
+    border-radius:10px;
+    padding:20px;
+}
+
+.result-card span {
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.result-card strong {
+    color:var(--dark);
+    font-size:25px;
+    overflow-wrap:anywhere;
+}
+
+.result-card small {
+    display:block;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.equations {
+    background:#fbfcf8;
+    border:1px solid #e7ebdf;
+    border-radius:10px;
+    padding:25px;
+    margin-top:25px;
+}
+
+.equations p {
+    color:var(--dark);
+    font-size:18px;
+    margin:9px 0;
+}
+
+.notice {
+    background:#fffaf0;
+    border:1px solid #eee2c3;
+    border-radius:9px;
+    padding:20px;
+    margin-top:25px;
+    color:#665b3b;
+    font-size:14px;
+}
+
+footer {
+    text-align:center;
+    padding:35px 6%;
+    background:var(--soft);
+    color:var(--muted);
+    font-size:14px;
+    margin-top:30px;
+}
+
+footer a {
+    color:var(--gold);
+    text-decoration:none;
+}
+
+@media(max-width:650px) {
+    header {
+        justify-content:center;
+    }
+
+    nav {
+        justify-content:center;
+    }
+
+    .panel {
+        padding:20px 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">M4NA<span>.</span></a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="discover.html">Discover</a>
+        <a href="classical-mechanics.html">Classical Mechanics</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="laboratories.html">Laboratories</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="eyebrow">M4NA INTERACTIVE LABORATORY 02</div>
+
+    <h1>Force Identity Laboratory</h1>
+
+    <p>
+        Examine applied force, additional activated forces,
+        force values and their proposed relationships with motion.
+    </p>
+</section>
+
+<main class="container">
+
+<section class="intro">
+    <h2>Understanding Force Identity</h2>
+
+    <p>
+        Within the M4NA framework, applied force refers to the
+        individual force being examined as the operating cause
+        of an object's motion. When additional forces are activated
+        on the object, the resulting force condition is examined
+        as resultant force.
+    </p>
+</section>
+
+<section class="panel">
+
+    <h2>01 — Primary Applied Force</h2>
+
+    <p>
+        Enter the value of the applied force and the proportionality
+        constant to examine its corresponding velocity.
+    </p>
+
+    <div class="input-grid">
+
+        <div>
+            <label for="primaryForce">Applied Force Value (f)</label>
+            <input type="number" id="primaryForce" value="4"
+                   min="0" step="any">
+            <div class="small">Enter a non-negative force value.</div>
+        </div>
+
+        <div>
+            <label for="k">Proportionality Constant (k)</label>
+            <input type="number" id="k" value="1"
+                   min="0.000001" step="any">
+            <div class="small">Must be greater than zero.</div>
+        </div>
+
+        <div>
+            <label for="duration">Operation Duration (t)</label>
+            <input type="number" id="duration" value="2"
+                   min="0" step="any">
+            <div class="small">Enter the operation duration.</div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="panel">
+
+    <h2>02 — Additional Activated Forces</h2>
+
+    <p>
+        Add other forces activated on the object. Classify each
+        according to its direction relative to the primary applied
+        force.
+    </p>
+
+    <div class="table-wrap">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Force</th>
+                    <th>Force Value</th>
+                    <th>Direction</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="forceRows"></tbody>
+        </table>
+
+    </div>
+
+    <div class="buttons">
+
+        <button class="secondary" onclick="addForce()">
+            + Add Additional Force
+        </button>
+
+        <button class="primary" onclick="calculate()">
+            Examine Force Identity
+        </button>
+
+        <button class="reset" onclick="resetLab()">
+            Reset
+        </button>
+
+    </div>
+
+</section>
+
+<section class="panel">
+
+    <h2>03 — Force Examination Results</h2>
+
+    <div class="result-grid">
+
+        <div class="result-card">
+            <span>Primary Applied Force</span>
+            <strong id="rPrimary">4</strong>
+            <small>Force value</small>
+        </div>
+
+        <div class="result-card">
+            <span>Same-Direction Additional Forces</span>
+            <strong id="rSame">0</strong>
+            <small>Sum of entered values</small>
+        </div>
+
+        <div class="result-card">
+            <span>Opposing-Direction Additional Forces</span>
+            <strong id="rOpposing">0</strong>
+            <small>Sum of entered values</small>
+        </div>
+
+        <div class="result-card">
+            <span>Corresponding Primary Velocity</span>
+            <strong id="rVelocity">4</strong>
+            <small>v = f/k</small>
+        </div>
+
+        <div class="result-card">
+            <span>Primary Force Quantity</span>
+            <strong id="rQuantity">8</strong>
+            <small>f × t</small>
+        </div>
+
+        <div class="result-card">
+            <span>Additional Force Count</span>
+            <strong id="rCount">0</strong>
+            <small>Activated forces entered</small>
+        </div>
+
+    </div>
+
+    <div class="notice">
+        <strong>Important:</strong>
+        The additional forces are reported separately according
+        to their entered directions. This calculator does not
+        automatically subtract opposing forces or assume a
+        resultant-force rule. The precise relationship between
+        differently directed forces requires a separately
+        specified M4NA rule.
+    </div>
+
+</section>
+
+<section class="panel">
+
+    <h2>04 — Force Operation Analysis</h2>
+
+    <p>
+        Examine the primary applied force across successive
+        operations with different durations.
+    </p>
+
+    <div class="input-grid">
+
+        <div>
+            <label for="opForce">Applied Force Value (f)</label>
+            <input type="number" id="opForce" value="2"
+                   min="0" step="any">
+        </div>
+
+        <div>
+            <label for="opTime">Operation Duration (t)</label>
+            <input type="number" id="opTime" value="1"
+                   min="0" step="any">
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <button class="secondary" onclick="addOperation()">
+            + Add Operation
+        </button>
+
+        <button class="primary" onclick="calculateOperations()">
+            Calculate Operations
+        </button>
+    </div>
+
+    <div class="table-wrap">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Force (f)</th>
+                    <th>Duration (t)</th>
+                    <th>Velocity (v)</th>
+                    <th>Distance (s)</th>
+                    <th>Force Quantity (F)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="operationRows"></tbody>
+        </table>
+
+    </div>
+
+    <div class="result-grid">
+
+        <div class="result-card">
+            <span>Total Duration (T)</span>
+            <strong id="totalTime">0</strong>
+        </div>
+
+        <div class="result-card">
+            <span>Total Distance (S)</span>
+            <strong id="totalDistance">0</strong>
+        </div>
+
+        <div class="result-card">
+            <span>Total Force Quantity (F)</span>
+            <strong id="totalQuantity">0</strong>
+        </div>
+
+        <div class="result-card">
+            <span>Average Velocity (V)</span>
+            <strong id="averageVelocity">0</strong>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="equations">
+
+    <h2>05 — M4NA Mathematical Relationships</h2>
+
+    <p>f = kv</p>
+    <p>v = f/k</p>
+    <p>Fᵢ = fᵢtᵢ</p>
+    <p>sᵢ = vᵢtᵢ</p>
+    <p>F = Σ(fᵢtᵢ)</p>
+    <p>S = Σ(vᵢtᵢ)</p>
+    <p>V = S/T</p>
+    <p>F = kS</p>
+
+</section>
+
+</main>
+
+<footer>
+
+    <p><strong>Mechanics for New Age (M4NA)</strong></p>
+
+    <p>Redefining the Foundations of Mechanics & Cosmology</p>
+
+    <p style="margin-top:15px;">
+        <a href="laboratories.html">
+            ← Return to M4NA Laboratories
+        </a>
+    </p>
+
+    <p style="margin-top:12px;">
+        © 2026 Mechanics for New Age. All rights reserved.
+    </p>
+
+</footer>
+
+<script>
+
+function number(id) {
+    return Number(document.getElementById(id).value);
+}
+
+function fmt(value) {
+    return Number.isFinite(value)
+        ? Number(value.toFixed(6)).toString()
+        : "—";
+}
+
+function addForce(value="", direction="same") {
+
+    const tbody = document.getElementById("forceRows");
+    const row = document.createElement("tr");
+
+    const tdValue = document.createElement("td");
+    const input = document.createElement("input");
+
+    input.type = "number";
+    input.min = "0";
+    input.step = "any";
+    input.value = value;
+    input.placeholder = "Force value";
+    input.className = "additional-value";
+
+    tdValue.appendChild(input);
+
+    const tdDirection = document.createElement("td");
+    const select = document.createElement("select");
+
+    select.className = "additional-direction";
+
+    select.innerHTML = `
+        <option value="same">Same direction</option>
+        <option value="opposing">Opposing direction</option>
+    `;
+
+    select.value = direction;
+    tdDirection.appendChild(select);
+
+    const tdAction = document.createElement("td");
+    const remove = document.createElement("button");
+
+    remove.className = "remove";
+    remove.textContent = "Remove";
+
+    remove.onclick = function() {
+        row.remove();
+        calculate();
+    };
+
+    tdAction.appendChild(remove);
+
+    row.innerHTML = "<td>Additional force</td>";
+    row.appendChild(tdValue);
+    row.appendChild(tdDirection);
+    row.appendChild(tdAction);
+
+    tbody.appendChild(row);
+}
+
+function calculate() {
+
+    const f = number("primaryForce");
+    const k = number("k");
+    const t = number("duration");
+
+    if (!Number.isFinite(f) || f < 0 ||
+        !Number.isFinite(k) || k <= 0 ||
+        !Number.isFinite(t) || t < 0) {
+
+        alert("Please enter valid non-negative force and duration values, and k greater than zero.");
+        return;
+    }
+
+    let same = 0;
+    let opposing = 0;
+    let count = 0;
+
+    const rows = document.querySelectorAll("#forceRows tr");
+
+    for (const row of rows) {
+
+        const valueInput = row.querySelector(".additional-value");
+        const direction = row.querySelector(".additional-direction").value;
+
+        if (valueInput.value.trim() === "") {
+            alert("Please enter a value for every additional force.");
+            return;
+        }
+
+        const value = Number(valueInput.value);
+
+        if (!Number.isFinite(value) || value < 0) {
+            alert("Additional force values must be non-negative.");
+            return;
+        }
+
+        if (direction === "same") {
+            same += value;
+        } else {
+            opposing += value;
+        }
+
+        count++;
+    }
+
+    const velocity = f / k;
+    const quantity = f * t;
+
+    document.getElementById("rPrimary").textContent = fmt(f);
+    document.getElementById("rSame").textContent = fmt(same);
+    document.getElementById("rOpposing").textContent = fmt(opposing);
+    document.getElementById("rVelocity").textContent = fmt(velocity);
+    document.getElementById("rQuantity").textContent = fmt(quantity);
+    document.getElementById("rCount").textContent = count;
+}
+
+function addOperation() {
+
+    const f = number("opForce");
+    const t = number("opTime");
+
+    if (!Number.isFinite(f) || f < 0 ||
+        !Number.isFinite(t) || t < 0) {
+
+        alert("Enter valid non-negative operation values.");
+        return;
+    }
+
+    const tbody = document.getElementById("operationRows");
+    const row = document.createElement("tr");
+
+    const values = [f,t];
+
+    row.innerHTML = `
+        <td></td>
+        <td>${fmt(values[0])}</td>
+        <td>${fmt(values[1])}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button class="remove">Remove</button></td>
+    `;
+
+    row.querySelector("button").onclick = function() {
+        row.remove();
+        calculateOperations();
+    };
+
+    tbody.appendChild(row);
+
+    calculateOperations();
+}
+
+function calculateOperations() {
+
+    const k = number("k");
+
+    if (!Number.isFinite(k) || k <= 0) {
+        alert("Enter a proportionality constant greater than zero.");
+        return;
+    }
+
+    const rows = document.querySelectorAll("#operationRows tr");
+
+    let totalTime = 0;
+    let totalDistance = 0;
+    let totalForce = 0;
+
+    rows.forEach((row,index) => {
+
+        const f = Number(row.cells[1].textContent);
+        const t = Number(row.cells[2].textContent);
+
+        const v = f/k;
+        const s = v*t;
+        const F = f*t;
+
+        totalTime += t;
+        totalDistance += s;
+        totalForce += F;
+
+        row.cells[0].textContent = index+1;
+        row.cells[3].textContent = fmt(v);
+        row.cells[4].textContent = fmt(s);
+        row.cells[5].textContent = fmt(F);
+
+    });
+
+    const V = totalTime > 0
+        ? totalDistance/totalTime
+        : 0;
+
+    document.getElementById("totalTime").textContent = fmt(totalTime);
+    document.getElementById("totalDistance").textContent = fmt(totalDistance);
+    document.getElementById("totalQuantity").textContent = fmt(totalForce);
+    document.getElementById("averageVelocity").textContent = fmt(V);
+}
+
+function resetLab() {
+
+    document.getElementById("primaryForce").value = 4;
+    document.getElementById("k").value = 1;
+    document.getElementById("duration").value = 2;
+
+    document.getElementById("forceRows").innerHTML = "";
+    document.getElementById("operationRows").innerHTML = "";
+
+    document.getElementById("opForce").value = 2;
+    document.getElementById("opTime").value = 1;
+
+    calculate();
+    calculateOperations();
+}
+
+document.getElementById("k").addEventListener("input", function() {
+    calculateOperations();
+});
+
+addForce();
+addOperation();
+addOperation();
+calculate();
+
+</script>
+
+</body>
+</html>
