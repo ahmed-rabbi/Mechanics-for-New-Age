@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Classical Mechanics | M4NA</title>
+
+<meta name="description" content="Explore the M4NA Classical Mechanics framework and its proposed approach to applied force, motion, velocity and travelling distance.">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #26321b;
+    line-height: 1.8;
+}
+
+header {
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e8eddf;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #607a3b;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #435033;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #9b8a42;
+}
+
+.hero {
+    padding: 100px 10%;
+    text-align: center;
+    background: linear-gradient(135deg, #f5f8ed, #ffffff);
+}
+
+.label {
+    color: #9b8a42;
+    letter-spacing: 3px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.2;
+    margin: 22px 0;
+}
+
+.hero p {
+    max-width: 850px;
+    margin: auto;
+    color: #66705a;
+    font-size: 18px;
+}
+
+.section {
+    padding: 75px 10%;
+}
+
+.section h2 {
+    color: #526b32;
+    font-size: 30px;
+    margin-bottom: 22px;
+}
+
+.section p {
+    color: #59634f;
+    margin-bottom: 18px;
+    font-size: 16px;
+}
+
+.highlight {
+    background: #f5f7ee;
+    border-left: 5px solid #a5bd69;
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 5px;
+}
+
+.highlight p {
+    color: #344326;
+    font-size: 17px;
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.card {
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e5eadb;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(38,50,27,0.04);
+}
+
+.card h3 {
+    color: #607a3b;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.equation {
+    background: #26321b;
+    color: #e2edc9;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 25px 0;
+    overflow-x: auto;
+}
+
+.equation h3 {
+    font-size: 25px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.equation p {
+    color: #ffffff;
+    font-size: 14px;
+    margin: 0;
+}
+
+.formula {
+    background: #f8f9f4;
+    border: 1px solid #e5eadb;
+    padding: 22px;
+    margin: 15px 0;
+    border-radius: 7px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #526b32;
+    overflow-x: auto;
+}
+
+.note {
+    color: #77816a !important;
+    font-size: 13px !important;
+}
+
+.cta {
+    background: #f5f7ee;
+    padding: 75px 10%;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 13px 30px;
+    background: #718b43;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #526b32;
+}
+
+footer {
+    background: #26321b;
+    color: #e5ebda;
+    text-align: center;
+    padding: 35px 10%;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .section {
+        padding: 55px 7%;
+    }
+
+    .hero {
+        padding: 65px 7%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">M4NA</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="discover.html">Discover</a>
+        <a href="classical-mechanics.html">Classical Mechanics</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="laboratories.html">Laboratories</a>
+        <a href="discussions.html">Discussions</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <div class="label">M4NA CLASSICAL MECHANICS</div>
+
+    <h1>Re-examining the Foundations of Classical Mechanics</h1>
+
+    <p>
+        Exploring the proposed relationship between
+        applied force, motion value, travelling distance
+        and successive operations.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <h2>01 — Introduction</h2>
+
+    <p>
+        Classical Mechanics has traditionally provided
+        the mathematical foundation for examining the
+        motion of physical objects.
+    </p>
+
+    <p>
+        Mechanics for New Age (M4NA) proposes a
+        force-centred framework for re-examining
+        fundamental concepts of mechanics and the
+        operational relationship between applied force
+        and motion.
+    </p>
+
+    <div class="highlight">
+        <p>
+            The central objective of M4NA Classical
+            Mechanics is to examine motion through its
+            operating cause, motion value and actual
+            travelling distance.
+        </p>
+    </div>
+
+</section>
+
+<section class="section" style="background:#fafbf7;">
+
+    <h2>02 — Fundamental Concepts</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Applied Force</h3>
+            <p>
+                Applied force is the operating cause of
+                an object's motion, producing, rebuilding
+                or maintaining its motion value and motion
+                quantity, and operating the object in a
+                specific direction.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Motion Value</h3>
+            <p>
+                Motion value represents the velocity
+                or rate of an object's motion.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Motion Quantity</h3>
+            <p>
+                Motion quantity represents the actual
+                travelling distance of an object.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Operation</h3>
+            <p>
+                An operation provides a basis for examining
+                the corresponding force, velocity, time
+                and travelling distance.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>03 — M4NA Definition of Motion</h2>
+
+    <div class="highlight">
+
+        <p>
+            Motion is the outcome of an applied force
+            which provides a real picture of the traverse
+            of an object by representing its motion nature,
+            value (velocity/rate) and quantity (travelling
+            distance) within successive intervals of the
+            same operation, different operations, or
+            various segments of the same or different intervals.
+        </p>
+
+    </div>
+
+    <p>
+        This definition establishes the conceptual
+        foundation for examining motion through the
+        operating conditions of an object and its
+        successive movements.
+    </p>
+
+</section>
+
+<section class="section" style="background:#fafbf7;">
+
+    <h2>04 — Force Value and Motion Value</h2>
+
+    <p>
+        M4NA proposes a proportional relationship
+        between force value and motion value.
+    </p>
+
+    <div class="equation">
+
+        <h3>f = kv</h3>
+
+        <p>
+            f = Force Value<br>
+            v = Motion Value (Velocity)<br>
+            k = Universal Proportionality Constant
+        </p>
+
+    </div>
+
+    <p>
+        The corresponding time-based expression is:
+    </p>
+
+    <div class="formula">
+        f/t = kv/t
+    </div>
+
+    <p>
+        Within the proposed framework, this expression
+        is examined in relation to an instant or a
+        specified duration of operation.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <h2>05 — Successive Operations</h2>
+
+    <p>
+        M4NA examines motion through successive
+        operations, allowing the corresponding
+        force value, velocity and travelling distance
+        to be represented individually.
+    </p>
+
+    <div class="formula">
+        sᵢ = vᵢtᵢ
+    </div>
+
+    <div class="formula">
+        Fᵢ = fᵢtᵢ
+    </div>
+
+    <div class="formula">
+        Fᵢ = ksᵢ
+    </div>
+
+    <p>
+        Here, each operation is represented by its
+        corresponding velocity, force value, time
+        and travelling distance.
+    </p>
+
+</section>
+
+<section class="section" style="background:#fafbf7;">
+
+    <h2>06 — Total Force and Total Travelling Distance</h2>
+
+    <p>
+        For multiple successive operations,
+        M4NA proposes the following relationships:
+    </p>
+
+    <div class="formula">
+        F = Σ(fᵢtᵢ)
+    </div>
+
+    <div class="formula">
+        S = Σsᵢ = Σ(vᵢtᵢ)
+    </div>
+
+    <div class="formula">
+        F = kS
+    </div>
+
+    <p>
+        The total operating time is represented by:
+    </p>
+
+    <div class="formula">
+        T = Σtᵢ
+    </div>
+
+    <p>
+        The average velocity across the total
+        travelling distance and operating time is:
+    </p>
+
+    <div class="formula">
+        V = Σ(vᵢtᵢ) / Σtᵢ
+    </div>
+
+    <div class="highlight">
+        <p>
+            The proposed relationship connects total
+            force quantity, total travelling distance
+            and average velocity across successive
+            operations.
+        </p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>07 — Research Direction</h2>
+
+    <p>
+        M4NA Classical Mechanics is intended to provide
+        a structured foundation for further theoretical
+        examination, mathematical development and
+        scientific discussion.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Motion</h3>
+            <p>
+                Examining motion value, motion quantity
+                and successive operations.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Force</h3>
+            <p>
+                Examining applied force and its proposed
+                relationship with motion.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Mathematical Framework</h3>
+            <p>
+                Developing and examining the mathematical
+                relationships of M4NA.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Scientific Discussion</h3>
+            <p>
+                Encouraging critical examination,
+                research and constructive scientific dialogue.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Explore the M4NA Research Platform</h2>
+
+    <p>
+        Continue exploring the proposed framework
+        through research, publications and interactive
+        scientific laboratories.
+    </p>
+
+    <a href="discover.html" class="button">
+        Discover M4NA
+    </a>
+
+    <a href="index.html" class="button">
+        Return Home
+    </a>
+
+</section>
+
+<footer>
+
+    <p><strong>MECHANICS FOR NEW AGE (M4NA)</strong></p>
+
+    <p>Redefining the Foundations of Mechanics & Cosmology</p>
+
+    <p>Shah Ahmed Fazley Rabbi, BAM, ndc</p>
+
+    <p>© 2026 Mechanics for New Age. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
