@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Publications | Mechanics for New Age</title>
+
+<meta name="description" content="Explore scientific publications, research papers, theoretical studies and books from Mechanics for New Age (M4NA).">
+
+<style>
+:root {
+    --olive: #B2CB70;
+    --dark: #26321b;
+    --gold: #9b8a42;
+    --soft: #f5f7ee;
+    --text: #34402b;
+    --muted: #69745f;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    background: var(--white);
+    border-bottom: 1px solid #e8eddd;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--gold);
+}
+
+.hero {
+    background: linear-gradient(135deg, #f5f7ee, #ffffff);
+    padding: 85px 8%;
+    text-align: center;
+    border-bottom: 1px solid #edf0e5;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    color: var(--dark);
+    font-size: clamp(36px, 5vw, 58px);
+    margin: 15px 0;
+    line-height: 1.15;
+}
+
+.hero p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.section {
+    padding: 65px 8%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    color: var(--dark);
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    max-width: 750px;
+}
+
+.intro-box {
+    background: var(--soft);
+    border-left: 5px solid var(--olive);
+    padding: 28px 30px;
+    border-radius: 8px;
+    margin-bottom: 45px;
+}
+
+.intro-box h2 {
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid #e7ebdf;
+    border-radius: 12px;
+    padding: 28px;
+    transition: 0.25s ease;
+    box-shadow: 0 5px 18px rgba(38,50,27,0.035);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--olive);
+    box-shadow: 0 10px 25px rgba(38,50,27,0.08);
+}
+
+.card-number {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.card h3 {
+    color: var(--dark);
+    font-size: 20px;
+    margin: 12px 0;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 5px 12px;
+    background: #f1f4e9;
+    color: #697b3c;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.feature {
+    background: var(--dark);
+    color: white;
+    padding: 55px 8%;
+    text-align: center;
+}
+
+.feature h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: var(--olive);
+}
+
+.feature p {
+    max-width: 780px;
+    margin: auto;
+    color: #e0e7d5;
+}
+
+.feature .author {
+    margin-top: 25px;
+    color: var(--olive);
+    font-weight: 600;
+}
+
+.note {
+    background: #fbfcf8;
+    border: 1px solid #e8eddd;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 35px;
+    color: var(--muted);
+}
+
+footer {
+    background: #f5f7ee;
+    padding: 35px 8%;
+    text-align: center;
+    border-top: 1px solid #e7ebdf;
+}
+
+footer h3 {
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+footer p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+footer a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+@media(max-width: 700px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px 17px;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .section {
+        padding: 45px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">M4NA<span>.</span></a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="discover.html">Discover</a>
+        <a href="classical-mechanics.html">Classical Mechanics</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html" class="active">Publications</a>
+        <a href="laboratories.html">Laboratories</a>
+        <a href="discussions.html">Discussions</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="eyebrow">M4NA Scientific Library</div>
+
+    <h1>Publications</h1>
+
+    <p>
+        A growing collection of scientific papers, theoretical studies,
+        mathematical explorations and books dedicated to examining
+        the foundations of mechanics and cosmology.
+    </p>
+</section>
+
+<main>
+
+<section class="section">
+
+    <div class="intro-box">
+        <h2>A Knowledge Library for Scientific Exploration</h2>
+
+        <p>
+            The M4NA Publications Library is intended to provide an
+            organised platform for presenting research, developing
+            theoretical propositions, examining mathematical relations
+            and sharing scientific ideas.
+        </p>
+    </div>
+
+    <div class="section-heading">
+        <h2>Publication Collections</h2>
+        <p>
+            Explore the principal areas of publication and scholarly work
+            within the Mechanics for New Age framework.
+        </p>
+    </div>
+
+    <div class="grid">
+
+        <article class="card">
+            <div class="card-number">01 / RESEARCH PAPERS</div>
+            <h3>Scientific Research Papers</h3>
+            <p>
+                Research contributions examining mechanical principles,
+                physical phenomena and proposed approaches to scientific
+                understanding.
+            </p>
+            <span class="status">Collection in development</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">02 / CLASSICAL MECHANICS</div>
+            <h3>Re-examining Classical Mechanics</h3>
+            <p>
+                A dedicated collection examining the foundations,
+                definitions, equations and interpretations of classical
+                mechanics through the M4NA framework.
+            </p>
+            <span class="status">Featured research series</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">03 / THEORETICAL STUDIES</div>
+            <h3>M4NA Theoretical Papers</h3>
+            <p>
+                Conceptual propositions and theoretical developments
+                relating to applied force, motion, velocity and
+                travelling distance.
+            </p>
+            <span class="status">Collection in development</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">04 / MATHEMATICS</div>
+            <h3>Mathematical Studies</h3>
+            <p>
+                Mathematical expressions, relationships, derivations
+                and analytical examinations associated with the
+                M4NA framework.
+            </p>
+            <span class="status">Collection in development</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">05 / QUANTUM & RELATIVITY</div>
+            <h3>Quantum & Relativity</h3>
+            <p>
+                A future research collection exploring questions
+                concerning quantum phenomena, relativity and the
+                foundations of modern physics.
+            </p>
+            <span class="status">Future research area</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">06 / COSMOLOGY</div>
+            <h3>Cosmology & Universe</h3>
+            <p>
+                A developing collection dedicated to exploring
+                cosmological questions, the universe and the
+                fundamental principles of physical reality.
+            </p>
+            <span class="status">Future research area</span>
+        </article>
+
+    </div>
+</section>
+
+<section class="feature">
+    <h2>Mechanics for New Age</h2>
+
+    <p>
+        An independent scientific framework seeking to re-examine
+        the foundations of mechanics through its proposed relationships
+        between applied force, motion value and travelling distance.
+    </p>
+
+    <div class="author">
+        Shah Ahmed Fazley Rabbi, BAM, ndc
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="section-heading">
+        <h2>Books & Chapters</h2>
+
+        <p>
+            The M4NA book collection is organised around a sequence
+            of major scientific subjects.
+        </p>
+    </div>
+
+    <div class="grid">
+
+        <article class="card">
+            <div class="card-number">BOOK I</div>
+            <h3>Classical Mechanics</h3>
+            <p>
+                An examination of Newtonian classical mechanics
+                and the proposed M4NA approach to its foundational
+                principles.
+            </p>
+            <span class="status">Primary book series</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">BOOK II</div>
+            <h3>Quantum & Relativity</h3>
+            <p>
+                A planned exploration of quantum physics,
+                relativity and related theoretical questions.
+            </p>
+            <span class="status">Planned</span>
+        </article>
+
+        <article class="card">
+            <div class="card-number">BOOK III</div>
+            <h3>Cosmology & Universe</h3>
+            <p>
+                A planned exploration of cosmology, the universe
+                and the fundamental questions of existence.
+            </p>
+            <span class="status">Planned</span>
+        </article>
+
+    </div>
+
+    <div class="note">
+        <strong>Publication Notice:</strong>
+        This library will be expanded as papers, manuscripts,
+        mathematical studies and books are prepared for publication.
+        Individual publications will be listed here with their
+        respective titles and details.
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <h3>Mechanics for New Age (M4NA)</h3>
+
+    <p>Redefining the Foundations of Mechanics & Cosmology</p>
+
+    <p style="margin-top:12px;">
+        A Global Platform for Scientific Discovery
+    </p>
+
+    <p style="margin-top:18px;">
+        © 2026 Mechanics for New Age. All rights reserved.
+    </p>
+</footer>
+
+</body>
+</html>
