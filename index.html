@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mechanics for New Age | M4NA</title>
+
+<meta name="description" content="Mechanics for New Age (M4NA) — Redefining the Foundations of Mechanics and Cosmology.">
+
+<style>
+
+:root {
+    --olive: #B2CB70;
+    --dark: #26321b;
+    --gold: #9b8a42;
+    --white: #ffffff;
+    --soft: #f7f9f2;
+    --text: #394333;
+    --muted: #737c6c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--soft);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.container {
+    width: 90%;
+    max-width: 1180px;
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+header {
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid #e8ecdf;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo-mark {
+    width: 46px;
+    height: 46px;
+    background: var(--olive);
+    color: var(--dark);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+
+.logo small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-button {
+    background: var(--dark);
+    color: white !important;
+    padding: 11px 20px;
+    border-radius: 30px;
+}
+
+.menu-toggle {
+    display: none;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 105px 0;
+    background:
+        radial-gradient(circle at 85% 20%, #e6edcf, transparent 32%),
+        linear-gradient(135deg, #ffffff, #f1f5e7);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 70px);
+    line-height: 1.12;
+    color: var(--dark);
+    margin: 22px 0;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: #829c47;
+}
+
+.hero p {
+    max-width: 650px;
+    font-size: 17px;
+    color: var(--muted);
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+}
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 13px 23px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 13px;
+    transition: 0.25s;
+}
+
+.button-primary {
+    background: var(--dark);
+    color: white;
+}
+
+.button-secondary {
+    background: white;
+    color: var(--dark);
+    border: 1px solid #dce4ce;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+/* SCIENTIFIC VISUAL */
+
+.science-visual {
+    height: 370px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, white, #edf3df);
+    border: 1px solid #e0e8d2;
+    box-shadow: 0 20px 55px rgba(38,50,27,0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.orbit {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    border: 1px solid #a9bc7a;
+    border-radius: 50%;
+    transform: scaleY(0.6) rotate(35deg);
+}
+
+.orbit.two {
+    width: 330px;
+    height: 330px;
+    transform: scaleY(0.6) rotate(-35deg);
+    border-color: #c8bb83;
+}
+
+.orbit.three {
+    width: 190px;
+    height: 190px;
+    transform: scaleY(0.6) rotate(75deg);
+    border-color: #71883d;
+}
+
+.core {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: var(--dark);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 900;
+    box-shadow: 0 0 0 15px rgba(178,203,112,0.25);
+    z-index: 2;
+}
+
+.visual-caption {
+    position: absolute;
+    bottom: 25px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 85px 0;
+}
+
+.section-title {
+    max-width: 750px;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.2;
+    color: var(--dark);
+    margin: 12px 0;
+}
+
+.section-title p {
+    color: var(--muted);
+}
+
+/* DISCOVER */
+
+.discover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.panel {
+    padding: 35px;
+    background: white;
+    border: 1px solid #e7ebdf;
+    border-radius: 20px;
+}
+
+.panel h3 {
+    color: var(--dark);
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.panel p {
+    color: var(--muted);
+}
+
+.mission {
+    background: var(--dark);
+    color: white;
+    border-radius: 20px;
+    padding: 35px;
+}
+
+.mission h3 {
+    color: var(--olive);
+    margin-bottom: 15px;
+}
+
+.mission p {
+    font-size: 19px;
+}
+
+/* FRAMEWORK */
+
+.framework {
+    background: #f0f4e7;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e3e9d8;
+    border-radius: 18px;
+    padding: 28px;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(38,50,27,0.08);
+}
+
+.card-number {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.card h3 {
+    color: var(--dark);
+    margin: 15px 0 10px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* EXPLORE */
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.explore-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    background: white;
+    border: 1px solid #e5e9dd;
+    border-radius: 16px;
+    text-decoration: none;
+}
+
+.explore-item h3 {
+    color: var(--dark);
+    font-size: 17px;
+}
+
+.explore-item p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.arrow {
+    color: var(--gold);
+    font-size: 25px;
+}
+
+/* CALL TO ACTION */
+
+.cta {
+    background: linear-gradient(120deg, #26321b, #40512d);
+    border-radius: 25px;
+    padding: 55px;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 36px;
+    margin: 12px 0;
+}
+
+.cta p {
+    color: #d9e1d0;
+    max-width: 650px;
+}
+
+.cta .button {
+    background: var(--olive);
+    color: var(--dark);
+    margin-top: 25px;
+}
+
+/* FOOTER */
+
+footer {
+    background: white;
+    border-top: 1px solid #e8ecdf;
+    padding: 35px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.footer-content strong {
+    color: var(--dark);
+}
+
+/* MOBILE */
+
+@media(max-width:850px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 82px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .science-visual {
+        height: 310px;
+    }
+}
+
+@media(max-width:580px) {
+
+    .hero {
+        padding: 65px 0;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .discover-grid,
+    .cards,
+    .explore-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 25px;
+    }
+
+    .cta {
+        padding: 32px;
+    }
+
+    .cta h2 {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+
+<nav>
+
+<a href="#home" class="logo">
+<span class="logo-mark">M4NA</span>
+<span>
+MECHANICS FOR NEW AGE
+<small>SCIENTIFIC EXPLORATION</small>
+</span>
+</a>
+
+<button class="menu-toggle" id="menuToggle">☰</button>
+
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#discover">Discover</a>
+<a href="#framework">Framework</a>
+<a href="#explore">Explore</a>
+<a href="https://mechanicsfornewage.com">Main Website</a>
+</div>
+
+</nav>
+
+</div>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="eyebrow">
+A Platform for Scientific Exploration
+</div>
+
+<h1>
+Redefining the Foundations of <span>Mechanics.</span>
+</h1>
+
+<p>
+Mechanics for New Age (M4NA) is an independent scientific
+exploration platform dedicated to re-examining the foundations
+of classical mechanics and exploring new perspectives on motion,
+applied force, mass, energy and the physical universe.
+</p>
+
+<div class="buttons">
+
+<a class="button button-primary" href="#discover">
+Discover M4NA →
+</a>
+
+<a class="button button-secondary"
+href="https://mechanicsfornewage.com">
+Visit Main Website ↗
+</a>
+
+</div>
+
+</div>
+
+<div class="science-visual">
+
+<div class="orbit"></div>
+<div class="orbit two"></div>
+<div class="orbit three"></div>
+
+<div class="core">M4NA</div>
+
+<div class="visual-caption">
+Ideas • Principles • Exploration
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- DISCOVER -->
+
+<section id="discover">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">01 / Discover</div>
+
+<h2>A platform for scientific exploration.</h2>
+
+<p>
+Question established explanations, examine fundamental
+principles and explore new perspectives on the physical universe.
+</p>
+
+</div>
+
+<div class="discover-grid">
+
+<div class="panel">
+
+<h3>What is M4NA?</h3>
+
+<p>
+Mechanics for New Age is a developing scientific framework
+and publishing platform. It presents original concepts,
+mathematical relationships and discussions concerning
+motion, applied force and the foundations of mechanics.
+</p>
+
+</div>
+
+<div class="mission">
+
+<h3>Our Mission</h3>
+
+<p>
+To encourage scientific inquiry, challenge conventional
+thinking and contribute to the continuing exploration
+of nature's fundamental principles.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FRAMEWORK -->
+
+<section class="framework" id="framework">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">02 / M4NA Framework</div>
+
+<h2>Explore the foundations.</h2>
+
+<p>
+Discover the principal concepts and areas of exploration
+within Mechanics for New Age.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="card-number">01</div>
+<h3>Applied Force</h3>
+<p>
+Explore applied force as the operating cause of motion
+within the M4NA framework.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">02</div>
+<h3>Motion & Velocity</h3>
+<p>
+Examine motion through velocity, actual travelling
+distance and successive time intervals.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">03</div>
+<h3>Force Identity</h3>
+<p>
+Explore the relationship among travelling distance,
+velocity and time in an overall operation.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">04</div>
+<h3>Pattern Identity</h3>
+<p>
+Examine increasing, decreasing, uniform and mixed
+patterns of force and velocity.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">05</div>
+<h3>Mass & Interaction</h3>
+<p>
+Explore the role of mass in the generation and
+operation of motion.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">06</div>
+<h3>Energy & Cosmology</h3>
+<p>
+Follow the broader scientific exploration toward
+energy, quantum questions, relativity and cosmology.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EXPLORE -->
+
+<section id="explore">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">03 / Explore</div>
+
+<h2>Continue your scientific journey.</h2>
+
+<p>
+Discover the M4NA project through its main website
+and open research repository.
+</p>
+
+</div>
+
+<div class="explore-grid">
+
+<a class="explore-item"
+href="https://mechanicsfornewage.com">
+
+<div>
+<h3>Official M4NA Website</h3>
+<p>Visit the main scientific platform.</p>
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<a class="explore-item"
+href="https://github.com/ahmed-rabbi/Mechanics-for-New-Age">
+
+<div>
+<h3>Open Repository</h3>
+<p>Explore M4NA project files and materials.</p>
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<a class="explore-item"
+href="https://mechanicsfornewage.com">
+
+<div>
+<h3>Books & Publications</h3>
+<p>Explore M4NA publications and scientific writing.</p>
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+<a class="explore-item"
+href="https://mechanicsfornewage.com">
+
+<div>
+<h3>Interactive Exploration</h3>
+<p>Continue to the main website for laboratory content.</p>
+</div>
+
+<span class="arrow">↗</span>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CALL TO ACTION -->
+
+<section>
+
+<div class="container">
+
+<div class="cta">
+
+<div class="eyebrow">Mechanics for New Age</div>
+
+<h2>Explore. Question. Discover.</h2>
+
+<p>
+Join the continuing exploration of mechanics and cosmology.
+Discover original concepts, scientific discussions and
+new perspectives on the physical universe.
+</p>
+
+<a class="button"
+href="https://mechanicsfornewage.com">
+Explore M4NA Website ↗
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer-content">
+
+<div>
+<strong>MECHANICS FOR NEW AGE (M4NA)</strong><br>
+Redefining the Foundations of Mechanics & Cosmology
+</div>
+
+<div>
+© <span id="year"></span> M4NA
+</div>
+
+<div>
+<a href="#home">Back to Top ↑</a>
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function() {
+
+    navLinks.classList.toggle("open");
+
+    menuToggle.textContent =
+        navLinks.classList.contains("open") ? "×" : "☰";
+
+});
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
