@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velocity Laboratory | M4NA</title>
+
+<style>
+:root {
+    --olive:#B2CB70;
+    --gold:#9b8a42;
+    --dark:#26321b;
+    --background:#f5f7ee;
+    --white:#ffffff;
+    --text:#34402b;
+    --muted:#68735d;
+    --border:#e2e8d6;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--background);
+    color:var(--text);
+    line-height:1.65;
+}
+header{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:34px 20px;
+    border-bottom:5px solid var(--olive);
+}
+.brand{
+    color:var(--olive);
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+header h1{
+    font-size:clamp(27px,5vw,40px);
+    margin:12px 0 5px;
+}
+header p{color:#e5ebd9}
+nav{
+    background:white;
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+}
+nav a{
+    color:var(--dark);
+    text-decoration:none;
+    margin:0 12px;
+    font-size:14px;
+    font-weight:bold;
+}
+nav a:hover{color:var(--gold)}
+.container{
+    max-width:1050px;
+    margin:35px auto;
+    padding:0 18px;
+}
+.panel{
+    background:white;
+    padding:25px;
+    margin-bottom:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:0 4px 16px rgba(38,50,27,.045);
+}
+h2,h3{color:var(--dark)}
+.definition{
+    background:#f5f7ee;
+    border-left:5px solid var(--olive);
+    padding:18px;
+    border-radius:7px;
+    margin-top:18px;
+}
+.equation{
+    background:var(--dark);
+    color:white;
+    padding:17px;
+    text-align:center;
+    border-radius:9px;
+    margin:15px 0;
+    font-size:21px;
+    font-weight:bold;
+}
+.controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    align-items:end;
+    margin:20px 0;
+}
+.field{flex:1;min-width:150px}
+label{
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:6px;
+    color:var(--dark);
+}
+input{
+    width:100%;
+    padding:11px;
+    border:1px solid #cbd5b8;
+    border-radius:7px;
+    font-size:16px;
+    background:white;
+    color:var(--dark);
+}
+button{
+    background:var(--dark);
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+}
+button:hover{background:#43552d}
+button.secondary{
+    background:#e8eedb;
+    color:var(--dark);
+    border:1px solid var(--border);
+}
+.table-wrap{overflow-x:auto;margin-top:18px}
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+th{
+    background:var(--dark);
+    color:white;
+    padding:12px 9px;
+    text-align:center;
+    font-size:13px;
+}
+td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+}
+td input{
+    min-width:90px;
+    text-align:center;
+}
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:14px;
+    margin-top:20px;
+}
+.result{
+    background:#f5f7ee;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:17px;
+    text-align:center;
+}
+.result span{
+    display:block;
+    font-size:13px;
+    color:var(--muted);
+}
+.result strong{
+    color:var(--dark);
+    font-size:23px;
+}
+.notice{
+    background:#f5f7ee;
+    border:1px solid var(--border);
+    padding:17px;
+    border-radius:9px;
+    margin-top:18px;
+}
+.note{
+    color:var(--muted);
+    font-size:13px;
+}
+footer{
+    text-align:center;
+    padding:30px 15px;
+    background:var(--dark);
+    color:white;
+    margin-top:45px;
+}
+footer a{
+    color:var(--olive);
+    text-decoration:none;
+    font-weight:bold;
+}
+@media(max-width:600px){
+    nav a{display:inline-block;margin:5px 8px}
+    .panel{padding:18px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">MECHANICS FOR NEW AGE</div>
+    <h1>Velocity Laboratory</h1>
+    <p>Examining velocity values and actual travelling distance</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover M4NA</a>
+    <a href="classical-mechanics.html">Classical Mechanics</a>
+    <a href="laboratories.html">Laboratories</a>
+</nav>
+
+<main class="container">
+
+<section class="panel">
+    <h2>01 — Purpose of the Laboratory</h2>
+
+    <p>
+        This laboratory examines velocity as the value of motion
+        and travelling distance as the quantity of motion.
+        It explores how both are represented through successive
+        operations of an object.
+    </p>
+
+    <div class="definition">
+        <strong>M4NA perspective:</strong>
+        Velocity represents the value or rate of motion, while
+        actual travelling distance represents the quantity of
+        motion. Each operation has a corresponding velocity
+        value and travelling distance over its duration.
+    </div>
+</section>
+
+<section class="panel">
+    <h2>02 — Fundamental Velocity Relationship</h2>
+
+    <p>
+        The M4NA framework proposes a direct relationship between
+        the applied-force value and the corresponding velocity value.
+    </p>
+
+    <div class="equation">f = kv</div>
+
+    <p>Where:</p>
+    <ul>
+        <li><strong>f</strong> = applied-force value</li>
+        <li><strong>k</strong> = proportionality constant</li>
+        <li><strong>v</strong> = velocity value</li>
+    </ul>
+
+    <div class="equation">s = vt</div>
+
+    <p>
+        Travelling distance for an operation is represented by
+        its velocity value multiplied by its duration.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>03 — Interactive Velocity Calculator</h2>
+
+    <p>
+        Enter the velocity value and duration for each operation.
+        The calculator will determine the corresponding applied-force
+        value and actual travelling distance.
+    </p>
+
+    <div class="controls">
+        <div class="field">
+            <label for="k">Proportionality constant (k)</label>
+            <input type="number" id="k" value="1"
+                   min="0.000001" step="any">
+        </div>
+
+        <button onclick="addOperation()">+ Add Operation</button>
+        <button class="secondary" onclick="resetOperations()">Reset</button>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Velocity (v)</th>
+                    <th>Duration (t)</th>
+                    <th>Force Value (f)</th>
+                    <th>Distance (s)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="operationRows"></tbody>
+        </table>
+    </div>
+
+    <div class="result-grid">
+        <div class="result">
+            <span>Total Duration (T)</span>
+            <strong id="totalTime">0</strong>
+        </div>
+
+        <div class="result">
+            <span>Total Distance (S)</span>
+            <strong id="totalDistance">0</strong>
+        </div>
+
+        <div class="result">
+            <span>Total Force Quantity (F)</span>
+            <strong id="totalForce">0</strong>
+        </div>
+
+        <div class="result">
+            <span>Average Velocity (V)</span>
+            <strong id="averageVelocity">0</strong>
+        </div>
+    </div>
+
+    <div class="notice">
+        <h3>Velocity Pattern Analysis</h3>
+        <p id="velocityRecord">
+            Enter operation values to begin.
+        </p>
+        <strong id="patternResult">Awaiting Data</strong>
+    </div>
+
+    <p class="note">
+        All calculations follow the proposed M4NA relationships.
+        Enter non-negative velocity values and positive or zero
+        operation durations.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>04 — Successive Velocity Patterns</h2>
+
+    <h3>Increasing Velocity</h3>
+    <div class="equation">2 → 4 → 6 → 8</div>
+    <p>
+        The velocity value increases from one operation to
+        the next.
+    </p>
+
+    <h3>Unchanged Velocity</h3>
+    <div class="equation">4 → 4 → 4 → 4</div>
+    <p>
+        The velocity value remains unchanged through successive
+        operations.
+    </p>
+
+    <h3>Decreasing Velocity</h3>
+    <div class="equation">8 → 6 → 4 → 2</div>
+    <p>
+        The velocity value decreases from one operation to
+        the next.
+    </p>
+
+    <h3>Mixed Velocity Pattern</h3>
+    <div class="equation">2 → 4 → 6 → 4 → 2</div>
+    <p>
+        The velocity value changes in different ways across
+        successive operations.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>05 — Velocity, Distance and Time</h2>
+
+    <p>
+        Each operation contributes its own travelling distance.
+        The total travelling distance is obtained by adding
+        the distances from all operations.
+    </p>
+
+    <div class="equation">sᵢ = vᵢtᵢ</div>
+    <div class="equation">S = Σvᵢtᵢ</div>
+    <div class="equation">T = Σtᵢ</div>
+    <div class="equation">V = S/T</div>
+
+    <p>
+        The average velocity value represents the total travelling
+        distance divided by the total duration of the recorded
+        operations.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>06 — M4NA Mathematical Expressions</h2>
+
+    <div class="equation">f = kv</div>
+    <div class="equation">sᵢ = vᵢtᵢ</div>
+    <div class="equation">F = Σfᵢtᵢ</div>
+    <div class="equation">S = Σvᵢtᵢ</div>
+    <div class="equation">V = S/T</div>
+    <div class="equation">F = kS</div>
+    <div class="equation">F/T = kV</div>
+</section>
+
+<section class="panel">
+    <h2>07 — Research Perspective</h2>
+
+    <p>
+        The laboratory focuses on the operational relationship
+        between velocity values, travelling distances and time.
+        It records the individual values for each operation
+        rather than treating a complete journey as one
+        undifferentiated event.
+    </p>
+
+    <div class="definition">
+        <strong>Key examination:</strong>
+        Different successive velocity patterns can produce
+        different motion histories. Therefore, examining only
+        the average velocity value does not reveal every detail
+        of the successive motion pattern.
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>Mechanics for New Age (M4NA) Classical Mechanics</p>
+    <p>Redefining the Foundations of Mechanics &amp; Cosmology</p>
+    <p>
+        <a href="laboratories.html">← Return to M4NA Laboratories</a>
+    </p>
+    <p style="font-size:12px;color:#d8dfcb;">
+        Shah Ahmed Fazley Rabbi, BAM, ndc
+    </p>
+</footer>
+
+<script>
+
+let operations = [
+    {v:2,t:1},
+    {v:4,t:1},
+    {v:6,t:1}
+];
+
+function fmt(value){
+    if(!Number.isFinite(value)) return "—";
+    return Number(value.toFixed(4)).toString();
+}
+
+function renderRows(){
+
+    const tbody=document.getElementById("operationRows");
+    tbody.innerHTML="";
+
+    operations.forEach((op,index)=>{
+
+        const row=document.createElement("tr");
+
+        row.innerHTML=`
+            <td>${index+1}</td>
+
+            <td>
+                <input type="number" min="0" step="any"
+                value="${op.v}"
+                onchange="updateOperation(${index},'v',this.value)">
+            </td>
+
+            <td>
+                <input type="number" min="0" step="any"
+                value="${op.t}"
+                onchange="updateOperation(${index},'t',this.value)">
+            </td>
+
+            <td id="force-${index}">0</td>
+            <td id="distance-${index}">0</td>
+
+            <td>
+                <button class="secondary"
+                onclick="removeOperation(${index})">
+                Remove
+                </button>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
+
+    calculate();
+}
+
+function updateOperation(index,field,value){
+    operations[index][field]=Number(value);
+    calculate();
+}
+
+function addOperation(){
+    operations.push({v:2,t:1});
+    renderRows();
+}
+
+function removeOperation(index){
+
+    if(operations.length<=1){
+        alert("At least one operation is required.");
+        return;
+    }
+
+    operations.splice(index,1);
+    renderRows();
+}
+
+function resetOperations(){
+
+    operations=[
+        {v:2,t:1},
+        {v:4,t:1},
+        {v:6,t:1}
+    ];
+
+    document.getElementById("k").value=1;
+    renderRows();
+}
+
+function calculate(){
+
+    const k=Number(document.getElementById("k").value);
+
+    if(!Number.isFinite(k)||k<=0){
+        document.getElementById("velocityRecord").textContent=
+            "Please enter a positive value for k.";
+        document.getElementById("patternResult").textContent=
+            "Invalid k";
+        return;
+    }
+
+    let totalTime=0;
+    let totalDistance=0;
+    let totalForce=0;
+    let velocities=[];
+
+    for(let i=0;i<operations.length;i++){
+
+        const v=Number(operations[i].v);
+        const t=Number(operations[i].t);
+
+        if(!Number.isFinite(v)||!Number.isFinite(t)||v<0||t<0){
+            document.getElementById("velocityRecord").textContent=
+                "Please enter valid non-negative velocity and duration values.";
+            document.getElementById("patternResult").textContent=
+                "Invalid input";
+            return;
+        }
+
+        const f=k*v;
+        const s=v*t;
+        const F=f*t;
+
+        totalTime+=t;
+        totalDistance+=s;
+        totalForce+=F;
+
+        velocities.push(v);
+
+        document.getElementById("force-"+i).textContent=fmt(f);
+        document.getElementById("distance-"+i).textContent=fmt(s);
+    }
+
+    const V=totalTime>0?totalDistance/totalTime:0;
+
+    document.getElementById("totalTime").textContent=fmt(totalTime);
+    document.getElementById("totalDistance").textContent=fmt(totalDistance);
+    document.getElementById("totalForce").textContent=fmt(totalForce);
+    document.getElementById("averageVelocity").textContent=fmt(V);
+
+    analysePattern(velocities);
+}
+
+function analysePattern(values){
+
+    const record=document.getElementById("velocityRecord");
+    const result=document.getElementById("patternResult");
+
+    record.textContent=
+        "Successive velocity values: "+
+        values.map(fmt).join(" → ");
+
+    if(values.length<2){
+        result.textContent="Insufficient Operations";
+        return;
+    }
+
+    let increasing=true;
+    let decreasing=true;
+    let unchanged=true;
+
+    for(let i=1;i<values.length;i++){
+
+        if(values[i]<=values[i-1]) increasing=false;
+        if(values[i]>=values[i-1]) decreasing=false;
+        if(values[i]!==values[i-1]) unchanged=false;
+    }
+
+    if(increasing){
+        result.textContent="Increasing Velocity Pattern";
+    }
+    else if(decreasing){
+        result.textContent="Decreasing Velocity Pattern";
+    }
+    else if(unchanged){
+        result.textContent="Unchanged Velocity Pattern";
+    }
+    else{
+        result.textContent="Mixed Velocity Pattern";
+    }
+}
+
+document.getElementById("k").addEventListener("input",calculate);
+
+renderRows();
+
+</script>
+
+</body>
+</html>
