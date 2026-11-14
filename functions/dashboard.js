@@ -252,6 +252,11 @@ footer {
     <p><strong>Email:</strong> ${memberEmail}</p>
 
     <span class="status">● Account Session Active</span>
+    <br><br>
+<a href="https://mechanicsfornewage.com/my-account/edit-account/"
+   style="color:#637c35; font-weight:bold; text-decoration:none;">
+   Edit My Profile →
+</a>
   </section>
 
   <h2 class="section-title">My Workspace</h2>
