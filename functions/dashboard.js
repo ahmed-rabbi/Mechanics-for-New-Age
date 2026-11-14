@@ -13,10 +13,7 @@ export async function onRequest(context) {
     : "";
 
   if (!sessionId || !/^[a-f0-9]{64}$/.test(sessionId)) {
-    return Response.redirect(
-      new URL("/auth/login", request.url),
-      302
-    );
+    return Response.redirect(new URL("/auth/login", request.url), 302);
   }
 
   if (!env.M4NA_SESSIONS) {
@@ -31,10 +28,7 @@ export async function onRequest(context) {
     );
 
     if (!sessionData) {
-      return Response.redirect(
-        new URL("/auth/login", request.url),
-        302
-      );
+      return Response.redirect(new URL("/auth/login", request.url), 302);
     }
 
     const session = JSON.parse(sessionData);
@@ -56,67 +50,267 @@ export async function onRequest(context) {
       user.display_name || user.name || "M4NA Member"
     );
 
-    const memberEmail = escapeHTML(user.email || "Not available");
+    const memberEmail = escapeHTML(
+      user.email || "Not available"
+    );
 
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M4NA Member Dashboard</title>
+
+<title>M4NA | Member Dashboard</title>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f7ef;
+  background: #f7f8f2;
   color: #26321b;
 }
+
 header {
   background: #26321b;
   color: white;
-  padding: 22px;
-  text-align: center;
+  padding: 24px 7%;
 }
-main {
-  max-width: 850px;
+
+header h1 {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+header p {
+  margin: 7px 0 0;
+  color: #d5dfbd;
+}
+
+.container {
+  max-width: 1100px;
   margin: 45px auto;
-  padding: 25px;
+  padding: 0 22px;
 }
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+
+.welcome {
+  margin-bottom: 30px;
 }
-h1, h2 {
+
+.welcome h2 {
+  font-size: 30px;
+  margin-bottom: 8px;
   color: #52652f;
 }
+
+.welcome p {
+  color: #69745b;
+  line-height: 1.6;
+}
+
+.profile {
+  background: white;
+  border: 1px solid #e5e9d9;
+  border-left: 5px solid #8da653;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(38,50,27,0.04);
+}
+
+.profile h3 {
+  margin-top: 0;
+  color: #52652f;
+}
+
+.profile p {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: inline-block;
+  background: #edf4df;
+  color: #52652f;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.section-title {
+  color: #52652f;
+  margin-bottom: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e5e9d9;
+  border-radius: 10px;
+  padding: 25px;
+  min-height: 170px;
+  box-shadow: 0 4px 15px rgba(38,50,27,0.04);
+}
+
+.card h3 {
+  color: #52652f;
+  margin-top: 0;
+}
+
+.card p {
+  color: #68715e;
+  line-height: 1.6;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #637c35;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  margin-top: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .button {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 22px;
+  padding: 13px 22px;
+  border-radius: 6px;
   background: #52652f;
   color: white;
   text-decoration: none;
-  border-radius: 6px;
+  font-weight: bold;
+}
+
+.button.secondary {
+  background: white;
+  color: #52652f;
+  border: 1px solid #9aab75;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 25px;
+  text-align: center;
+  color: #758064;
+  border-top: 1px solid #e3e8d8;
+  font-size: 13px;
+}
+
+@media (max-width: 650px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome h2 {
+    font-size: 25px;
+  }
 }
 </style>
 </head>
+
 <body>
+
 <header>
-  <h1>Mechanics for New Age</h1>
+  <h1>MECHANICS FOR NEW AGE</h1>
   <p>Member Dashboard</p>
 </header>
-<main>
-  <section class="card">
+
+<main class="container">
+
+  <section class="welcome">
     <h2>Welcome, ${memberName}</h2>
-    <p><strong>Account:</strong> ${memberName}</p>
-    <p><strong>Email:</strong> ${memberEmail}</p>
-    <p>Your M4NA member session is active.</p>
-    <a class="button" href="/">Return to Research Home</a>
-    <a class="button" href="/auth/logout">Sign Out</a>
+    <p>
+      Welcome to your M4NA member workspace.
+      Explore research, laboratories and scientific resources.
+    </p>
   </section>
+
+  <section class="profile">
+    <h3>My Profile</h3>
+
+    <p><strong>Member:</strong> ${memberName}</p>
+    <p><strong>Email:</strong> ${memberEmail}</p>
+
+    <span class="status">● Account Session Active</span>
+  </section>
+
+  <h2 class="section-title">My Workspace</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>My Research</h3>
+      <p>
+        Explore M4NA research papers, publications
+        and scientific developments.
+      </p>
+      <a href="/">Explore Research →</a>
+    </div>
+
+    <div class="card">
+      <h3>Research Laboratories</h3>
+      <p>
+        Access the interactive laboratories and
+        experimental research facilities.
+      </p>
+      <a href="/">Explore Laboratories →</a>
+    </div>
+
+    <div class="card">
+      <h3>Member Resources</h3>
+      <p>
+        A dedicated space for M4NA learning
+        materials and member resources.
+      </p>
+      <span class="status">Under Development</span>
+    </div>
+
+    <div class="card">
+      <h3>Account Settings</h3>
+      <p>
+        Manage your central WordPress member
+        account and password.
+      </p>
+      <a href="https://mechanicsfornewage.com/change-password/">
+        Change Password →
+      </a>
+    </div>
+
+  </section>
+
+  <div class="actions">
+    <a class="button" href="/">Research Homepage</a>
+    <a class="button secondary" href="/auth/logout">Sign Out</a>
+  </div>
+
 </main>
+
+<footer>
+  Mechanics for New Age (M4NA) Classical Mechanics
+  <br><br>
+  Redefining the Foundations of Mechanics &amp; Cosmology
+</footer>
+
 </body>
 </html>`;
 
