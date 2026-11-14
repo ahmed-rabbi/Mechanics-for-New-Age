@@ -131,8 +131,7 @@ JSON.stringify({
     const responseHeaders = new Headers({
       "Location": new URL("/", request.url).toString(),
       "Set-Cookie":
-        `m4na_session=${sessionId}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`,
-      "Cache-Control": "no-store"
+"m4na_session=" + sessionId + "; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800",      "Cache-Control": "no-store"
     });
 
     responseHeaders.append("Set-Cookie", clearStateCookie);
