@@ -141,8 +141,8 @@ JSON.stringify({
       headers: responseHeaders
     });
 
-  } catch (error) {
+ } catch (error) {
+    console.error("M4NA OAuth callback error:", error.message);
     return errorResponse("An authentication error occurred.", 500);
   }
 }
-```
