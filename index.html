@@ -925,10 +925,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await response.json();
 
         if (data.authenticated) {
+
             accountLink.textContent =
                 data.user.name || "My Account";
 
             accountLink.href = "#";
+
+            const logoutLink = document.createElement("a");
+
+            logoutLink.id = "m4naLogoutLink";
+            logoutLink.textContent = "Sign Out";
+            logoutLink.href = "/auth/logout";
+            logoutLink.style.fontWeight = "bold";
+
+            navLinks.appendChild(logoutLink);
         }
 
     } catch (error) {
