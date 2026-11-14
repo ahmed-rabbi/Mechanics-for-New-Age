@@ -119,8 +119,8 @@ wordpressUrl + "/wp-json/moserver/resource",      {
     // Store the member profile in Cloudflare KV.
     // The WordPress access token is not stored in the browser.
     await env.M4NA_SESSIONS.put(
-      `session:${sessionId}`,
-      JSON.stringify({
+"session:" + sessionId,
+JSON.stringify({
         user: profile,
         createdAt: Date.now()
       }),
