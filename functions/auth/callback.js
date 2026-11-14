@@ -93,8 +93,7 @@ wordpressUrl + "/wp-json/moserver/token",      {
     const profileResponse = await fetch(
 wordpressUrl + "/wp-json/moserver/resource",      {
         headers: {
-          "Authorization": `Bearer ${tokenData.access_token}`,
-          "Accept": "application/json"
+"Authorization": "Bearer " + tokenData.access_token,          "Accept": "application/json"
         }
       }
     );
