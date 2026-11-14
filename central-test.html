@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4NA Central Publishing Test</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 30px 18px;
+    font-family: Arial, sans-serif;
+    background: #f5f7ee;
+    color: #26321b;
+}
+
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+}
+
+h1 {
+    color: #26321b;
+}
+
+.notice {
+    padding: 16px;
+    background: white;
+    border-left: 5px solid #B2CB70;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.post {
+    background: white;
+    padding: 22px;
+    margin: 18px 0;
+    border-radius: 8px;
+    border: 1px solid #e3e8d9;
+}
+
+.post h2 {
+    color: #52652e;
+}
+
+.date {
+    color: #777;
+    font-size: 13px;
+}
+
+#status {
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>M4NA Central Publishing Test</h1>
+
+<div class="notice">
+    <strong>Central source:</strong> Mechanics for New Age WordPress
+    <p id="status">Connecting to the central publishing system...</p>
+</div>
+
+<div id="posts"></div>
+
+</div>
+
+<script>
+const apiURL =
+"https://mechanicsfornewage.com/wp-json/wp/v2/posts?per_page=5";
+
+const statusBox = document.getElementById("status");
+const postsBox = document.getElementById("posts");
+
+fetch(apiURL)
+.then(response => {
+    if (!response.ok) {
+        throw new Error("WordPress API returned an error.");
+    }
+    return response.json();
+})
+.then(posts => {
+
+    statusBox.textContent =
+        "Connection successful. Articles retrieved from WordPress.";
+
+    if (!posts.length) {
+        postsBox.textContent = "No published articles were found.";
+        return;
+    }
+
+    posts.forEach(post => {
+
+        const card = document.createElement("article");
+        card.className = "post";
+
+        const title = document.createElement("h2");
+        title.textContent = post.title.rendered;
+
+        const date = document.createElement("p");
+        date.className = "date";
+        date.textContent =
+            "Published: " +
+            new Date(post.date).toLocaleDateString();
+
+        const excerpt = document.createElement("p");
+        excerpt.textContent =
+            post.excerpt.rendered.replace(/<[^>]*>/g, " ").trim();
+
+        card.appendChild(title);
+        card.appendChild(date);
+        card.appendChild(excerpt);
+
+        postsBox.appendChild(card);
+    });
+
+})
+.catch(error => {
+    statusBox.textContent =
+        "Connection could not be completed: " + error.message;
+});
+</script>
+
+</body>
+</html>
