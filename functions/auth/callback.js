@@ -63,8 +63,7 @@ export async function onRequest(context) {
 
     // Exchange the authorization code for an access token.
     const tokenResponse = await fetch(
-      `${wordpressUrl}/wp-json/moserver/token`,
-      {
+wordpressUrl + "/wp-json/moserver/token",      {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -92,8 +91,7 @@ export async function onRequest(context) {
 
     // Retrieve the authenticated WordPress member's profile.
     const profileResponse = await fetch(
-      `${wordpressUrl}/wp-json/moserver/resource`,
-      {
+wordpressUrl + "/wp-json/moserver/resource",      {
         headers: {
           "Authorization": `Bearer ${tokenData.access_token}`,
           "Accept": "application/json"
