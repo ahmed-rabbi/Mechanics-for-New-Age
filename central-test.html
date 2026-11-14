@@ -71,13 +71,13 @@ h1 {
 
 <script>
 const apiURL =
-"https://mechanicsfornewage.com/wp-json/wp/v2/posts?per_page=5";
+"https://mechanicsfornewage.com/wp-json/wp/v2/posts?per_page=5&_m4na=" + Date.now();
 
 const statusBox = document.getElementById("status");
 const postsBox = document.getElementById("posts");
 
-fetch(apiURL)
-.then(response => {
+fetch(apiURL, { cache: "no-store" })
+    .then(response => {
     if (!response.ok) {
         throw new Error("WordPress API returned an error.");
     }
