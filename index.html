@@ -900,6 +900,42 @@ document.getElementById("year").textContent =
     new Date().getFullYear();
 
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
 
+    const navLinks = document.getElementById("navLinks");
+
+    if (!navLinks) return;
+
+    const accountLink = document.createElement("a");
+
+    accountLink.id = "m4naAccountLink";
+    accountLink.textContent = "Sign In";
+    accountLink.href = "/auth/login";
+    accountLink.style.fontWeight = "bold";
+
+    navLinks.appendChild(accountLink);
+
+    try {
+        const response = await fetch("/auth/me", {
+            credentials: "same-origin",
+            cache: "no-store"
+        });
+
+        const data = await response.json();
+
+        if (data.authenticated) {
+            accountLink.textContent =
+                data.user.name || "My Account";
+
+            accountLink.href = "#";
+        }
+
+    } catch (error) {
+        console.error("M4NA account check failed:", error);
+    }
+
+});
+</script>
 </body>
 </html>
