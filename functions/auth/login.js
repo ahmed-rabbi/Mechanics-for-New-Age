@@ -30,8 +30,7 @@ export async function onRequest(context) {
     response_type: "code",
     client_id: clientId,
     redirect_uri: redirectUri,
-    scope: "profile",
-    state: state
+scope: "profile email",    state: state
   }).toString();
 
   // Save state securely for callback verification.
