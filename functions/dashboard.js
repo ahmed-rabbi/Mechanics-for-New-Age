@@ -291,7 +291,7 @@ footer {
         Manage your central WordPress member
         account and password.
       </p>
-      <a href="https://mechanicsfornewage.com/change-password/">
+      <a href="https://mechanicsfornewage.com/my-account/edit-account/">
         Change Password →
       </a>
     </div>
