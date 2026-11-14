@@ -1,4 +1,3 @@
-```javascript
 export async function onRequest(context) {
   const { request, env } = context;
 
@@ -10,7 +9,7 @@ export async function onRequest(context) {
 
   function errorResponse(message, status = 400) {
     return new Response(message, {
-      status,
+      status: status,
       headers: {
         "Set-Cookie": clearStateCookie,
         "Cache-Control": "no-store"
@@ -19,9 +18,11 @@ export async function onRequest(context) {
   }
 
   try {
-    if (!env.MINIORANGE_CLIENT_ID ||
-        !env.MINIORANGE_CLIENT_SECRET ||
-        !env.M4NA_SESSIONS) {
+    if (
+      !env.MINIORANGE_CLIENT_ID ||
+      !env.MINIORANGE_CLIENT_SECRET ||
+      !env.M4NA_SESSIONS
+    ) {
       return errorResponse("Authentication is not configured.", 503);
     }
 
@@ -29,8 +30,8 @@ export async function onRequest(context) {
     const code = url.searchParams.get("code");
     const returnedState = url.searchParams.get("state");
 
-    // Read the original state cookie.
     const cookies = request.headers.get("Cookie") || "";
+
     const stateCookie = cookies
       .split(";")
       .map(value => value.trim())
@@ -40,9 +41,10 @@ export async function onRequest(context) {
       ? stateCookie.substring("m4na_oauth_state=".length)
       : "";
 
-    // Compare state values without an early character-by-character exit.
     function secureCompare(a, b) {
-      if (!a || !b || a.length !== b.length) return false;
+      if (!a || !b || a.length !== b.length) {
+        return false;
+      }
 
       let difference = 0;
 
@@ -61,9 +63,9 @@ export async function onRequest(context) {
       return errorResponse("Authorization code was not received.");
     }
 
-    // Exchange the authorization code for an access token.
     const tokenResponse = await fetch(
-wordpressUrl + "/wp-json/moserver/token",      {
+      wordpressUrl + "/wp-json/moserver/token",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -89,11 +91,12 @@ wordpressUrl + "/wp-json/moserver/token",      {
       return errorResponse("WordPress did not provide an access token.", 502);
     }
 
-    // Retrieve the authenticated WordPress member's profile.
     const profileResponse = await fetch(
-wordpressUrl + "/wp-json/moserver/resource",      {
+      wordpressUrl + "/wp-json/moserver/resource",
+      {
         headers: {
-"Authorization": "Bearer " + tokenData.access_token,          "Accept": "application/json"
+          "Authorization": "Bearer " + tokenData.access_token,
+          "Accept": "application/json"
         }
       }
     );
@@ -108,7 +111,6 @@ wordpressUrl + "/wp-json/moserver/resource",      {
       return errorResponse("The WordPress member profile is incomplete.", 502);
     }
 
-    // Generate a separate random session identifier.
     const randomBytes = new Uint8Array(32);
     crypto.getRandomValues(randomBytes);
 
@@ -116,22 +118,21 @@ wordpressUrl + "/wp-json/moserver/resource",      {
       .map(byte => byte.toString(16).padStart(2, "0"))
       .join("");
 
-    // Store the member profile in Cloudflare KV.
-    // The WordPress access token is not stored in the browser.
     await env.M4NA_SESSIONS.put(
-"session:" + sessionId,
-JSON.stringify({
+      "session:" + sessionId,
+      JSON.stringify({
         user: profile,
         createdAt: Date.now()
       }),
       { expirationTtl: 604800 }
     );
 
-       // Establish the secure browser session.
     const responseHeaders = new Headers({
       "Location": new URL("/", request.url).toString(),
       "Set-Cookie":
-"m4na_session=" + sessionId + "; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800",      "Cache-Control": "no-store"
+        "m4na_session=" + sessionId +
+        "; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800",
+      "Cache-Control": "no-store"
     });
 
     responseHeaders.append("Set-Cookie", clearStateCookie);
@@ -141,7 +142,7 @@ JSON.stringify({
       headers: responseHeaders
     });
 
- } catch (error) {
+  } catch (error) {
     console.error("M4NA OAuth callback error:", error.message);
     return errorResponse("An authentication error occurred.", 500);
   }
