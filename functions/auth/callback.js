@@ -107,9 +107,78 @@ export async function onRequest(context) {
 
     const profile = await profileResponse.json();
 
-    if (!profile || !profile.id) {
+    const wordpressUserId = Number(profile && profile.id);
+
+    if (
+      !profile ||
+      !Number.isSafeInteger(wordpressUserId) ||
+      wordpressUserId <= 0
+    ) {
       return errorResponse("The WordPress member profile is incomplete.", 502);
     }
+
+    // --------------------------------------------------
+    // M4NA SUPABASE MEMBER PROFILE SYNCHRONISATION
+    // --------------------------------------------------
+
+    if (
+      env.SUPABASE_URL &&
+      env.SUPABASE_SERVICE_ROLE_KEY
+    ) {
+      try {
+        const supabaseUrl = env.SUPABASE_URL.replace(/\/+$/, "");
+
+        const supabaseResponse = await fetch(
+          supabaseUrl +
+          "/rest/v1/m4na_member_profiles?on_conflict=wordpress_user_id",
+          {
+            method: "POST",
+            headers: {
+              "apikey": env.SUPABASE_SERVICE_ROLE_KEY,
+              "Authorization": "Bearer " + env.SUPABASE_SERVICE_ROLE_KEY,
+              "Content-Type": "application/json",
+              "Prefer": "resolution=merge-duplicates,return=minimal"
+            },
+            body: JSON.stringify({
+              wordpress_user_id: wordpressUserId,
+              display_name:
+                profile.display_name || profile.name || "",
+              email: profile.email || ""
+            })
+          }
+        );
+
+        if (!supabaseResponse.ok) {
+          const errorDetails = await supabaseResponse.text();
+
+          console.error(
+            "M4NA Supabase profile sync failed:",
+            supabaseResponse.status,
+            errorDetails
+          );
+        } else {
+          console.log(
+            "M4NA Supabase profile synchronised for WordPress user:",
+            wordpressUserId
+          );
+        }
+
+      } catch (supabaseError) {
+        console.error(
+          "M4NA Supabase connection error:",
+          supabaseError.message
+        );
+      }
+
+    } else {
+      console.error(
+        "M4NA Supabase configuration is missing."
+      );
+    }
+
+    // --------------------------------------------------
+    // CLOUDFLARE MEMBER SESSION CREATION
+    // --------------------------------------------------
 
     const randomBytes = new Uint8Array(32);
     crypto.getRandomValues(randomBytes);
