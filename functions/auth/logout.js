@@ -35,4 +35,4 @@ export async function onRequest({ request, env }) {
     }
   });
 }
-```
+// M4NA central logout function
