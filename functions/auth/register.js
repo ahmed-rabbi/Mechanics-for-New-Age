@@ -144,8 +144,7 @@ export async function onRequest(context) {
           user_id: userId,
           display_name: displayName,
           email: email,
-          is_approved: true
-        })
+status: "active"        })
       }
     );
 
