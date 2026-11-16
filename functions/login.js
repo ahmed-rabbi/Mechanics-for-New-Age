@@ -1,4 +1,4 @@
-```javascript
+
 export async function onRequestGet() {
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -261,4 +261,3 @@ form.addEventListener("submit", async function(event) {
     }
   });
 }
-```
