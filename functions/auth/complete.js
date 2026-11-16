@@ -36,7 +36,7 @@ export async function onRequest(context) {
 
     const supabaseUrl = env.SUPABASE_URL.replace(/\/+$/, "");
 
-    // Validate the access token directly with Supabase.
+    // Validate the access token with Supabase.
     const authResponse = await fetch(
       `${supabaseUrl}/auth/v1/user`,
       {
@@ -49,7 +49,7 @@ export async function onRequest(context) {
 
     if (!authResponse.ok) {
       return Response.json(
-        { error: "Email verification could not be confirmed. Please try again." },
+        { error: "Email verification could not be confirmed." },
         { status: 401 }
       );
     }
@@ -76,11 +76,11 @@ export async function onRequest(context) {
       );
     }
 
-    // Find the member's central M4NA profile.
+    // Retrieve the central M4NA member profile.
     const profileUrl =
       `${supabaseUrl}/rest/v1/m4na_member_profiles` +
       `?user_id=eq.${encodeURIComponent(userId)}` +
-      `&select=user_id,display_name,email,is_approved`;
+      `&select=user_id,display_name,email,status`;
 
     const profileResponse = await fetch(profileUrl, {
       headers: {
@@ -120,7 +120,7 @@ export async function onRequest(context) {
             user_id: userId,
             display_name: displayName,
             email: email,
-            is_approved: true
+            status: "active"
           })
         }
       );
@@ -141,10 +141,12 @@ export async function onRequest(context) {
       profile = createdProfiles[0];
     }
 
-    // Do not permit access to profiles marked as unapproved.
-    if (!profile || profile.is_approved !== true) {
+    // Check the member's moderation status.
+    if (!profile || profile.status !== "active") {
       return Response.json(
-        { error: "Your account is not currently authorised to access the member area." },
+        {
+          error: "Your M4NA account is currently suspended or banned. Please contact the administrator."
+        },
         { status: 403 }
       );
     }
