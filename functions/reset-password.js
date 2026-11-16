@@ -158,9 +158,14 @@ form.addEventListener("submit", async function(event) {
       body: JSON.stringify({ password })
     });
 
-    if (!response.ok) {
-      throw new Error("Password update failed.");
-    }
+   const result = await response.json();
+
+if (!response.ok) {
+  throw new Error(
+    result.message || result.msg || result.error_description ||
+    "Password update failed. HTTP " + response.status
+  );
+}
 
     message.textContent =
       "Password updated successfully. Redirecting to sign in...";
@@ -169,9 +174,8 @@ form.addEventListener("submit", async function(event) {
       window.location.href = "/login?password_reset=success";
     }, 1800);
 
-  } catch (error) {
-    message.textContent =
-      "Unable to update your password. Please request a new recovery link and try again.";
+ } catch (error) {
+    message.textContent = error.message;
     button.disabled = false;
   }
 });
