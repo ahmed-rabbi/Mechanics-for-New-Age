@@ -65,17 +65,22 @@ export async function onRequest({ request, env }) {
     // Verify the member's current status in Supabase.
     const supabaseUrl = env.SUPABASE_URL.replace(/\/+$/, "");
 
-    const profileResponse = await fetch(
-      `${supabaseUrl}/rest/v1/m4na_member_profiles` +
-      `?user_id=eq.${encodeURIComponent(user.id)}` +
-      `&select=user_id,display_name,email,status`,
-      {
-        headers: {
-          "apikey": env.SUPABASE_SERVICE_ROLE_KEY,
-          "Authorization": `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`
-        }
-      }
-    );
+    const profileUrl =
+  supabaseUrl +
+  "/rest/v1/m4na_member_profiles" +
+  "?user_id=eq." + encodeURIComponent(user.id) +
+  "&select=user_id,display_name,email,status";
+
+const profileResponse = await fetch(
+  profileUrl,
+  {
+    headers: {
+      "apikey": env.SUPABASE_SERVICE_ROLE_KEY,
+      "Authorization":
+        "Bearer " + env.SUPABASE_SERVICE_ROLE_KEY
+    }
+  }
+);
 
     if (!profileResponse.ok) {
       console.error(
