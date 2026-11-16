@@ -1,4 +1,3 @@
-```javascript
 export async function onRequest({ request, env }) {
   const cookies = request.headers.get("Cookie") || "";
 
@@ -411,4 +410,4 @@ footer {
     });
   }
 }
-```
+
