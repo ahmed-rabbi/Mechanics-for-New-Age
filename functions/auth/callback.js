@@ -16,7 +16,7 @@ export async function onRequest(context) {
       }
     });
   }
-
+  try {
  const missingSettings = [];
 
 if (!env.MINIORANGE_CLIENT_ID) missingSettings.push("MINIORANGE_CLIENT_ID");
