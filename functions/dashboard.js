@@ -1,6 +1,5 @@
-export async function onRequest(context) {
-  const { request, env } = context;
-
+```javascript
+export async function onRequest({ request, env }) {
   const cookies = request.headers.get("Cookie") || "";
 
   const sessionCookie = cookies
@@ -12,28 +11,96 @@ export async function onRequest(context) {
     ? sessionCookie.substring("m4na_session=".length)
     : "";
 
-  if (!sessionId || !/^[a-f0-9]{64}$/.test(sessionId)) {
-    return Response.redirect(new URL("/auth/login", request.url), 302);
+  const loginUrl = new URL("/login", request.url);
+
+  function redirectToLogin(clearCookie = false) {
+    const headers = {
+      "Location": loginUrl.toString(),
+      "Cache-Control": "no-store"
+    };
+
+    if (clearCookie) {
+      headers["Set-Cookie"] =
+        "m4na_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0";
+    }
+
+    return new Response(null, {
+      status: 302,
+      headers
+    });
   }
 
-  if (!env.M4NA_SESSIONS) {
-    return new Response("Session storage is unavailable.", {
+  if (!sessionId || !/^[a-f0-9]{64}$/.test(sessionId)) {
+    return redirectToLogin();
+  }
+
+  if (
+    !env.M4NA_SESSIONS ||
+    !env.SUPABASE_URL ||
+    !env.SUPABASE_SERVICE_ROLE_KEY
+  ) {
+    return new Response("M4NA authentication service is unavailable.", {
       status: 503
     });
   }
 
   try {
+    // Retrieve the central M4NA session.
     const sessionData = await env.M4NA_SESSIONS.get(
       "session:" + sessionId
     );
 
     if (!sessionData) {
-      return Response.redirect(new URL("/auth/login", request.url), 302);
+      return redirectToLogin(true);
     }
 
     const session = JSON.parse(sessionData);
     const user = session.user || {};
 
+    if (!user.id) {
+      await env.M4NA_SESSIONS.delete("session:" + sessionId);
+      return redirectToLogin(true);
+    }
+
+    // Verify the member's current status in Supabase.
+    const supabaseUrl = env.SUPABASE_URL.replace(/\/+$/, "");
+
+    const profileResponse = await fetch(
+      `${supabaseUrl}/rest/v1/m4na_member_profiles` +
+      `?user_id=eq.${encodeURIComponent(user.id)}` +
+      `&select=user_id,display_name,email,status`,
+      {
+        headers: {
+          "apikey": env.SUPABASE_SERVICE_ROLE_KEY,
+          "Authorization": `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`
+        }
+      }
+    );
+
+    if (!profileResponse.ok) {
+      console.error(
+        "M4NA dashboard profile check failed:",
+        await profileResponse.text()
+      );
+
+      return new Response("Unable to verify your member account.", {
+        status: 503,
+        headers: {
+          "Cache-Control": "no-store"
+        }
+      });
+    }
+
+    const profiles = await profileResponse.json();
+    const profile = profiles[0];
+
+    // Reject suspended, banned, or removed members.
+    if (!profile || profile.status !== "active") {
+      await env.M4NA_SESSIONS.delete("session:" + sessionId);
+      return redirectToLogin(true);
+    }
+
+    // Use the latest central member information.
     function escapeHTML(value) {
       return String(value || "").replace(/[&<>"']/g, function (char) {
         return {
@@ -47,11 +114,11 @@ export async function onRequest(context) {
     }
 
     const memberName = escapeHTML(
-      user.display_name || user.name || "M4NA Member"
+      profile.display_name || user.name || "M4NA Member"
     );
 
     const memberEmail = escapeHTML(
-      user.email || "Not available"
+      profile.email || user.email || "Not available"
     );
 
     const html = `<!DOCTYPE html>
@@ -253,10 +320,11 @@ footer {
 
     <span class="status">● Account Session Active</span>
     <br><br>
-<a href="https://mechanicsfornewage.com/my-account/edit-account/"
-   style="color:#637c35; font-weight:bold; text-decoration:none;">
-   Edit My Profile →
-</a>
+
+    <a href="https://mechanicsfornewage.com/my-account/edit-account/"
+       style="color:#637c35; font-weight:bold; text-decoration:none;">
+       Edit My Profile →
+    </a>
   </section>
 
   <h2 class="section-title">My Workspace</h2>
@@ -293,8 +361,8 @@ footer {
     <div class="card">
       <h3>Account Settings</h3>
       <p>
-        Manage your central WordPress member
-        account and password.
+        Manage your central M4NA member account
+        and password.
       </p>
       <a href="https://mechanicsfornewage.com/my-account/edit-account/">
         Change Password →
@@ -328,7 +396,7 @@ footer {
     });
 
   } catch (error) {
-    console.error("M4NA dashboard error:", error.message);
+    console.error("M4NA dashboard error:", error);
 
     return new Response("Unable to load the member dashboard.", {
       status: 500,
@@ -338,3 +406,4 @@ footer {
     });
   }
 }
+```
