@@ -47,13 +47,22 @@ button:disabled { opacity: .6; cursor: wait; }
 
   <form id="resetForm" style="display:none">
     <label for="password">New Password</label>
-    <p style="text-align:left; font-size:13px; margin:8px 0;">
-  Password requirements:
-  <br>• Minimum 8 characters
-  <br>• At least one uppercase letter (A–Z)
-  <br>• At least one lowercase letter (a–z)
-  <br>• At least one number (0–9)
-</p>
+    <div style="
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:8px;
+  background:#f5f7f0;
+  padding:12px;
+  border-radius:8px;
+  margin:10px 0 15px;
+  font-size:13px;
+  color:#26321b;
+">
+  <div>✓ Minimum 8 characters</div>
+  <div>✓ Uppercase letter (A–Z)</div>
+  <div>✓ Lowercase letter (a–z)</div>
+  <div>✓ Number (0–9)</div>
+</div>
     <input id="password" type="password" autocomplete="new-password"
       minlength="8" placeholder="At least 8 characters" required>
 
