@@ -26,7 +26,8 @@ export async function onRequest(context) {
 
     if (
       typeof accessToken !== "string" ||
-      accessToken.length < 20
+      accessToken.length < 20 ||
+      accessToken.length > 8192
     ) {
       return Response.json(
         { error: "A valid verification session is required." },
@@ -66,17 +67,7 @@ export async function onRequest(context) {
     const userId = authUser.id;
     const email = (authUser.email || "").toLowerCase();
 
-    const displayName =
-      authUser.user_metadata?.display_name?.trim() || "";
-
-    if (!displayName) {
-      return Response.json(
-        { error: "Your M4NA display name is missing. Please contact the administrator." },
-        { status: 400 }
-      );
-    }
-
-    // Retrieve the central M4NA member profile.
+    // Retrieve the existing central M4NA member profile.
     const profileUrl =
       `${supabaseUrl}/rest/v1/m4na_member_profiles` +
       `?user_id=eq.${encodeURIComponent(userId)}` +
@@ -102,51 +93,36 @@ export async function onRequest(context) {
     }
 
     const profiles = await profileResponse.json();
-    let profile = profiles[0];
+    const profile = profiles[0];
 
-    // Create a profile if registration did not create one.
+    // Do not create a new profile during session completion.
     if (!profile) {
-      const createResponse = await fetch(
-        `${supabaseUrl}/rest/v1/m4na_member_profiles`,
+      return Response.json(
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": env.SUPABASE_SERVICE_ROLE_KEY,
-            "Authorization": `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
-            "Prefer": "return=representation"
-          },
-          body: JSON.stringify({
-            user_id: userId,
-            display_name: displayName,
-            email: email,
-            status: "active"
-          })
-        }
+          error: "Your M4NA member profile was not found. Please contact the administrator."
+        },
+        { status: 403 }
       );
-
-      if (!createResponse.ok) {
-        console.error(
-          "M4NA profile creation failed:",
-          await createResponse.text()
-        );
-
-        return Response.json(
-          { error: "Your member profile could not be created." },
-          { status: 500 }
-        );
-      }
-
-      const createdProfiles = await createResponse.json();
-      profile = createdProfiles[0];
     }
 
-    // Check the member's moderation status.
-    if (!profile || profile.status !== "active") {
+    // Enforce administrator moderation status.
+    if (profile.status !== "active") {
       return Response.json(
         {
           error: "Your M4NA account is currently suspended or banned. Please contact the administrator."
         },
+        { status: 403 }
+      );
+    }
+
+    const displayName =
+      typeof profile.display_name === "string"
+        ? profile.display_name.trim()
+        : "";
+
+    if (!displayName) {
+      return Response.json(
+        { error: "Your M4NA display name is missing. Please contact the administrator." },
         { status: 403 }
       );
     }
@@ -161,7 +137,7 @@ export async function onRequest(context) {
 
     const sessionUser = {
       id: userId,
-      name: profile.display_name || displayName,
+      name: displayName,
       email: profile.email || email
     };
 
@@ -178,7 +154,7 @@ export async function onRequest(context) {
     return Response.json(
       {
         success: true,
-        message: "M4NA email verification completed."
+        message: "M4NA authentication completed."
       },
       {
         status: 200,
