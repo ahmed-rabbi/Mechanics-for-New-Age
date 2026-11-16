@@ -1,3 +1,4 @@
+```javascript
 export async function onRequestGet() {
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -7,9 +8,7 @@ export async function onRequestGet() {
 <title>M4NA Central Login</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -74,6 +73,16 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(178, 203, 112, 0.2);
 }
 
+.forgot-link {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+  color: #526b32;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 button {
   width: 100%;
   margin-top: 25px;
@@ -87,9 +96,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: #405526;
-}
+button:hover { background: #405526; }
 
 button:disabled {
   opacity: 0.6;
@@ -123,7 +130,6 @@ button:disabled {
   text-decoration: none;
   font-weight: 600;
 }
-
 </style>
 </head>
 
@@ -145,7 +151,8 @@ button:disabled {
     <input
       type="email"
       id="email"
-      autocomplete="email"
+      name="email"
+      autocomplete="username"
       required
     >
 
@@ -153,9 +160,14 @@ button:disabled {
     <input
       type="password"
       id="password"
+      name="password"
       autocomplete="current-password"
       required
     >
+
+    <a class="forgot-link" href="/forgot-password">
+      Forgot Password?
+    </a>
 
     <button type="submit" id="loginButton">
       Sign In
@@ -249,3 +261,4 @@ form.addEventListener("submit", async function(event) {
     }
   });
 }
+```
