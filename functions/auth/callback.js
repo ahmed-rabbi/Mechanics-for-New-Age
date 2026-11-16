@@ -17,19 +17,22 @@ export async function onRequest(context) {
     });
   }
 
-  try {
-    if (
-      !env.MINIORANGE_CLIENT_ID ||
-      !env.MINIORANGE_CLIENT_SECRET ||
-      !env.M4NA_SESSIONS ||
-      !env.SUPABASE_URL ||
-      !env.SUPABASE_SERVICE_ROLE_KEY
-    ) {
-      return errorResponse(
-        "M4NA authentication is not fully configured.",
-        503
-      );
-    }
+ const missingSettings = [];
+
+if (!env.MINIORANGE_CLIENT_ID) missingSettings.push("MINIORANGE_CLIENT_ID");
+if (!env.MINIORANGE_CLIENT_SECRET) missingSettings.push("MINIORANGE_CLIENT_SECRET");
+if (!env.M4NA_SESSIONS) missingSettings.push("M4NA_SESSIONS");
+if (!env.SUPABASE_URL) missingSettings.push("SUPABASE_URL");
+if (!env.SUPABASE_SERVICE_ROLE_KEY) missingSettings.push("SUPABASE_SERVICE_ROLE_KEY");
+
+if (missingSettings.length > 0) {
+  console.error("M4NA missing configuration:", missingSettings);
+
+  return errorResponse(
+    "M4NA configuration is missing: " + missingSettings.join(", "),
+    503
+  );
+}
 
     const url = new URL(request.url);
 
