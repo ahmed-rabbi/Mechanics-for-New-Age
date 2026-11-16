@@ -1,4 +1,3 @@
-```javascript
 export async function onRequest({ request, env }) {
   const cookies = request.headers.get("Cookie") || "";
 
@@ -17,9 +16,7 @@ export async function onRequest({ request, env }) {
       /^[a-f0-9]{64}$/.test(sessionId) &&
       env.M4NA_SESSIONS
     ) {
-      await env.M4NA_SESSIONS.delete(
-        "session:" + sessionId
-      );
+      await env.M4NA_SESSIONS.delete("session:" + sessionId);
     }
   } catch (error) {
     console.error("M4NA logout error:", error);
@@ -29,10 +26,8 @@ export async function onRequest({ request, env }) {
     status: 302,
     headers: {
       "Location": new URL("/login", request.url).toString(),
-      "Set-Cookie":
-        "m4na_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0",
+      "Set-Cookie": "m4na_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0",
       "Cache-Control": "no-store"
     }
   });
 }
-// M4NA central logout function
