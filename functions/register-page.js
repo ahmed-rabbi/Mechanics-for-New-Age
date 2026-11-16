@@ -229,15 +229,16 @@ button:disabled {
 
       <label for="verificationCode">Verification Code</label>
 
-      <input
-        id="verificationCode"
-        type="text"
-        inputmode="numeric"
-        autocomplete="one-time-code"
-        placeholder="Enter your email code"
-        maxlength="12"
-        required
-      >
+     <input
+  id="verificationCode"
+  type="text"
+  inputmode="numeric"
+  autocomplete="one-time-code"
+  placeholder="Enter your six-digit code"
+  maxlength="6"
+  pattern="[0-9]{6}"
+  required
+>
 
       <button id="verifyButton" type="submit">
         Verify Email & Continue
