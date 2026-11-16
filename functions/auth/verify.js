@@ -50,6 +50,12 @@ export async function onRequest(context) {
         const error = fragment.get("error_description") ||
                       fragment.get("error");
 
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
+
         if (error) {
           throw new Error(error.replace(/\\+/g, " "));
         }
@@ -77,12 +83,6 @@ export async function onRequest(context) {
             result.error || "We could not complete your sign-in."
           );
         }
-
-        window.history.replaceState(
-          {},
-          document.title,
-          window.location.pathname
-        );
 
         message.textContent =
           "Your email has been verified. Your M4NA account is ready.";
