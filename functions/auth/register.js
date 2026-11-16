@@ -74,8 +74,9 @@ export async function onRequest(context) {
 
     // Register the member with Supabase Auth.
     const signupResponse = await fetch(
-      `${supabaseUrl}/auth/v1/signup`,
-      {
+`${supabaseUrl}/auth/v1/signup?redirect_to=${encodeURIComponent(
+  "https://m4na-research.pages.dev/auth/verify"
+)}`,      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
